@@ -1,5 +1,8 @@
 # notes
 
+### Documentation for all the things I might forget.
+### [demo](https://notes.sdavis.online)
+
 ## Project setup
 ```
 npm install
