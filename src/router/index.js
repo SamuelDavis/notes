@@ -13,7 +13,8 @@ export const routes = [Home, StyleGuide]
         path: i === 0 ? '/' : `/${component.name || `page${i}`}`,
         meta: {
             global: true
-        }
+        },
+        alias: component.name === 'home' ? '/home' : undefined
     }))
     .concat(new Array(5).fill(undefined).map((_, i) => {
         return {

@@ -1,6 +1,7 @@
 <template>
     <div id="app">
-        <notes-paper id="container">
+        <home v-if="$route.name === 'home'" id="home"/>
+        <notes-paper v-else id="container">
             <template v-slot:header>
                 <h1 class="header" v-text="$route.name"/>
             </template>
@@ -13,6 +14,7 @@
 </template>
 
 <script>
+    import Home from "./views/Home";
     import NotesPaper from "./components/NotesPaper";
     import NotesNav from "./components/NotesNav";
     import {routes} from "./router/index";
@@ -20,6 +22,7 @@
     export default {
         name: 'app',
         components: {
+            Home,
             NotesPaper,
             NotesNav
         },
@@ -36,7 +39,7 @@
         display: flex;
         flex-direction: row;
 
-        #container {
+        #home, #container {
             flex: 1;
         }
 
