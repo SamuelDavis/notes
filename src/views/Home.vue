@@ -1,5 +1,5 @@
 <template>
-  <div class="inverted-text">
+  <div class="home inverted-text">
     <div>
       <h1>Notes</h1>
       <hr>
@@ -36,27 +36,19 @@
 <style lang="scss" scoped>
   @import "./../assets/_variables.scss";
 
-  div:first-child {
+  .home {
     background-color: $cover-color;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 
-    * {
-      display: block;
-    }
-
-    > div {
-      border: 1px solid white;
+    div {
       padding: 5%;
-      margin: 5% 5% 10%;
+      margin: 5%;
+      text-align: left;
+      display: inline-block;
+      border: 1px solid white;
 
-      line-height: 1rem;
-
-      h4, p {
-        font-size: 0.75rem;
-        line-height: 0.75rem;
+      * {
+        display: block;
       }
 
       h4 {
@@ -65,6 +57,7 @@
 
       p {
         margin: 0;
+        font-size: 80%;
       }
     }
   }
