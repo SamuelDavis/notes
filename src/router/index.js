@@ -3,10 +3,11 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home'
 import StyleGuide from '../views/StyleGuide'
 import NotFound from '../views/NotFound'
+import Docker from '../views/Docker.vue'
 
 Vue.use(VueRouter);
 
-export const routes = [Home, StyleGuide]
+export const routes = [Home, Docker, StyleGuide]
     .map((component, i) => ({
         component,
         name: component.name || `page${i}`,
