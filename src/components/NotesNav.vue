@@ -1,62 +1,59 @@
 <template>
-    <nav>
-        <ol>
-            <li :class="{active: name === $route.name}" :key="i" :style="{backgroundColor: colors[i]}"
-                v-for="({path, name}, i) in routes">
-                <router-link :to="path" v-text="name"/>
-            </li>
-        </ol>
-    </nav>
+  <nav>
+    <ol>
+      <li :class="{active: name === $route.name}" :key="i" v-for="({path, name}, i) in routes">
+        <router-link :to="path" class="inverted-text" v-text="name"/>
+      </li>
+    </ol>
+  </nav>
 </template>
 
 <script>
-    import ColorRepo from "../services/ColorRepo";
+  import ColorRepo from '../services/ColorRepo'
 
-    const colorRepo = new ColorRepo();
+  const colorRepo = new ColorRepo()
 
-    export default {
-        name: 'notes-nav',
-        props: {
-            routes: Array
-        },
-        data() {
-            let colors = colorRepo.get();
-            if (colors.length < this.routes.length) {
-                colors = colorRepo.generateRandomColors(this.routes.length);
-                colorRepo.put(colors);
-            }
-            return {
-                colors: colors.map((color) => `rgb(${color.join(',')})`),
-            }
-        }
+  export default {
+    name: 'notes-nav',
+    props: {
+      routes: Array
     }
+  }
 </script>
 
 <style lang="scss" scoped>
-    * {
-        margin: 0;
-        padding: 0;
+  $tabRadius: 3px;
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  ol {
+    list-style: none;
+
+    > li {
+      border-top-right-radius: $tabRadius;
+      border-bottom-right-radius: $tabRadius;
+      margin-bottom: 0.1rem;
+      box-shadow: 2px 1px 3px 0 #888;
+      width: fit-content;
+      background-color: #247BA0;
+
+      &:first-child {
+        background-color: #50514F;
+      }
+
+      &.active {
+        position: relative;
+        left: -0.5rem;
+      }
+
+      a {
+        display: block;
+        padding: 0.5rem;
+        text-decoration: none;
+      }
     }
-
-    ol {
-        list-style: none;
-
-        > li {
-            margin-bottom: 0.1rem;
-            box-shadow: 2px 2px 3px 0 #888;
-
-            &.active {
-                position: relative;
-                left: -0.5rem;
-            }
-
-            a {
-                display: block;
-                padding: 0.5rem;
-                color: black;
-                text-decoration: none;
-                text-shadow: 0 0 1px white;
-            }
-        }
-    }
+  }
 </style>
