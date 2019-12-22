@@ -4,7 +4,7 @@
       <h1>Docker</h1>
     </template>
     <section :key="label" v-for="(notes, label) in template">
-      <h1 v-text="label"/>
+      <h2 v-text="label"/>
       <notes-note :content="notes" class="note" v-if="typeof notes[0] === 'string'"/>
       <notes-note :content="note" :key="i" class="note" v-else v-for="(note, i) in notes"/>
       <hr v-if="label !== Object.keys(template).pop()">

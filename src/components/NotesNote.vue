@@ -13,7 +13,7 @@
           return h('li', formatted)
         }))
       return h('div', [
-        h('h3', this.content.label),
+        h('label', this.content.label),
         h('notes-note', { props: { content: this.content.lines } })
       ])
     }
@@ -23,8 +23,15 @@
 <style lang="scss" scoped>
   @import "../assets/_variables.scss";
   code {
-    background-color: $code-highlight-color;
+    background-color: $code-highlight-a-color;
     border-radius: 5px;
-    box-shadow: 0 0 2px 2px $code-highlight-color;
+    box-shadow: 0 0 2px 2px $code-highlight-a-color;
+  }
+
+  label {
+    font-weight: bold;
+    background-color: $code-highlight-b-color;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 2px $code-highlight-b-color;
   }
 </style>
