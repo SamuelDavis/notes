@@ -1,14 +1,6 @@
 <template>
   <div id="app">
-    <home class="container" v-if="$route.name === 'home'"/>
-    <notes-paper class="container" v-else>
-      <template v-slot:header>
-        <h1 class="header" v-text="$route.name"/>
-      </template>
-      <template v-slot>
-        <router-view class="content"/>
-      </template>
-    </notes-paper>
+    <router-view id="container"/>
     <notes-nav :routes="routes" id="nav"/>
   </div>
 </template>
@@ -39,16 +31,16 @@
     display: flex;
     flex-direction: row;
 
+    #container {
+      flex: 1;
+      border-radius: 5px;
+      box-shadow: 0 0 3px 0 #888;
+    }
+
     #nav {
       margin-top: 0.5rem;
       max-width: 20%;
     }
-  }
-
-  .container {
-    flex: 1;
-    border-radius: 5px;
-    box-shadow: 0 0 3px 0 #888;
   }
 
   .inverted-text {

@@ -1,8 +1,12 @@
 <template>
   <div class="ruled-paper">
     <span class="rule"/>
-    <slot name="header"/>
-    <slot/>
+    <div class="header">
+      <slot name="header"/>
+    </div>
+    <div class="content">
+      <slot/>
+    </div>
   </div>
 </template>
 

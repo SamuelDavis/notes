@@ -1,9 +1,13 @@
 <template>
-    <h1>404</h1>
+  <notes-paper>
+    <template v-slot:header>
+      <h1>404</h1>
+    </template>
+  </notes-paper>
 </template>
 
 <script>
-    export default {
-        name: 'not-found'
-    }
+  export default {
+    name: 'not-found'
+  }
 </script>
