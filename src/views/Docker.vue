@@ -176,12 +176,6 @@
 <style lang="scss" scoped>
   @import "../assets/_variables.scss";
 
-  p {
-    * {
-      display: block;
-    }
-  }
-
   .note {
     margin-top: $line-height;
   }

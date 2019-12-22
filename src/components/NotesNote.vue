@@ -40,7 +40,7 @@
               case '`':
                 return h('code', { class: 'highlight-1' }, text)
               case '\'':
-                return h('code', { class: 'highlight-2' }, text)
+                return h('span', { class: 'highlight-2' }, text)
               default:
                 return h('span', text)
             }
@@ -49,7 +49,7 @@
         }))
       return h('div', [
         h('h4', this.content.label),
-        h('code', this.content.cmd),
+        h('code', { class: 'highlight-3' }, this.content.cmd),
         h('notes-note', { props: { content: this.content.lines } })
       ])
     }
@@ -67,12 +67,12 @@
     @include highlight($code-highlight-b-color)
   }
 
-  div > code {
+  .highlight-3 {
     @include highlight($code-highlight-c-color)
   }
 
   h4 {
-    width: max-content;
+    width: fit-content;
     font-weight: bold;
   }
 </style>
