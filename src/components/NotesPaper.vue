@@ -18,16 +18,9 @@
 
 <style lang="scss">
   .ruled-paper {
-    $line-height: 1rem;
-    $header-height: 4 * $line-height;
+    @import "../assets/_variables.scss";
 
-    $rule-size: 7.5%;
-    $rule-border: 5px;
-    $rule-margin: 1.5%;
-    $rule-width: calc(#{$rule-size} - #{$rule-border} - #{$rule-margin});
-
-    $rule-color: #efe4e4;
-    $line-color: #d9eaf3;
+    color: $text-color;
 
     position: relative;
     display: flex;
@@ -54,7 +47,7 @@
 
     > .content {
       flex: 1;
-      background-image: repeating-linear-gradient($line-color 0px, $line-color 1px, transparent 2px, transparent $line-height); //calc(#{$line-height} - 1px), $line-color $line-height);
+      background-image: repeating-linear-gradient(transparent 0px, transparent calc(#{$line-height} - 1px), $line-color $line-height);
       padding: 0 $rule-width $line-height $rule-size;
     }
 
@@ -72,6 +65,12 @@
 
     ul, ol {
       list-style-position: inside;
+
+      > li {
+        > *:first-child {
+          margin-left: -0.5rem;
+        }
+      }
     }
 
     hr {

@@ -22,6 +22,8 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "../assets/_variables.scss";
+
   $tabRadius: 3px;
 
   * {
@@ -36,12 +38,12 @@
       border-top-right-radius: $tabRadius;
       border-bottom-right-radius: $tabRadius;
       margin-bottom: 0.1rem;
-      box-shadow: 2px 1px 3px 0 #888;
+      box-shadow: 2px 1px 3px 0 rgba(0,0,0,0.5);
       width: fit-content;
-      background-color: #247BA0;
+      background-color: $nav-bg-color;
 
       &:first-child {
-        background-color: #50514F;
+        background-color: $nav-active-bg-color;
       }
 
       &.active {

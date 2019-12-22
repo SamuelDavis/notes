@@ -4,18 +4,22 @@
       <h1>Docker</h1>
     </template>
     <section :key="label" v-for="(notes, label) in template">
-      <h3 v-text="label"/>
-      <p :key="i" v-for="({label, lines}, i) in notes">
-        <label v-text="label"/>
-        <span :key="j" v-for="(line, j) in lines" v-text="line"/>
-      </p>
+      <h1 v-text="label"/>
+      <notes-note :content="notes" class="note" v-if="typeof notes[0] === 'string'"/>
+      <notes-note :content="note" :key="i" class="note" v-else v-for="(note, i) in notes"/>
+      <hr v-if="label !== Object.keys(template).pop()">
     </section>
   </notes-paper>
 </template>
 
 <script>
+  import NotesNote from '../components/NotesNote.vue'
+
   export default {
     name: 'docker',
+    components: {
+      NotesNote
+    },
     data () {
       return {
         template: {
@@ -160,7 +164,6 @@
                 '`-m` is optional and allows you to specify a commit `message` describing what has changed.',
                 '`container` references a local container id or name.',
                 '`image` is the repository used to store the image and `tag` is optional, defaulting to \'latest\'.',
-                ''
               ]
             }
           ]
@@ -171,13 +174,15 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "../assets/_variables.scss";
+
   p {
     * {
       display: block;
     }
+  }
 
-    label {
-      font-weight: bold;
-    }
+  .note {
+    margin-top: $line-height;
   }
 </style>

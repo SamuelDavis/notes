@@ -34,8 +34,10 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "./../assets/_variables.scss";
+
   div:first-child {
-    background-color: #50514F;
+    background-color: $cover-color;
     display: flex;
     flex-direction: column;
     justify-content: center;
