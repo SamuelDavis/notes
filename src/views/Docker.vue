@@ -59,8 +59,8 @@
           'helpful': [
             {
               'label': 'get Docker disk usage',
+              'cmd': 'docker run --net=host --ipc=host --uts=host --pid=host -it --security-opt=seccomp=unconfined --privileged --rm -v \/:\/host alpine sh -c "chroot \/host df -h | grep docker"',
               'lines': [
-                'docker run --net=host --ipc=host --uts=host --pid=host -it --security-opt=seccomp=unconfined --privileged --rm -v \/:\/host alpine sh -c "chroot \/host df -h | grep docker"',
                 '`chroot` sets the root directory to \/host for the `df` command which prints disk usage in a `-h` human readable format.',
                 'Because this command is actually introspecting the host (everything docker uses, rather than a single container), the `--net`, `--ipc`, and `--pid` all get set to `host`.',
                 '`--privileged` gives access to all docker devices on the host.'
@@ -68,16 +68,16 @@
             },
             {
               'label': 'remove all stopped docker containers',
+              'cmd': 'docker rm $(docker ps -qa)',
               'lines': [
-                'docker rm $(docker ps -qa)',
                 '`ps` lists containers and `rm` removes containers.',
                 'Specifying the `-aq` options causes all stopped containers to be removed.'
               ]
             },
             {
               'label': 'parse some JSON',
+              'cmd': 'docker run --rm -i imega\/jq -C path',
               'lines': [
-                'docker run --rm -i imega\/jq -C path',
                 '`jq` is a JSON parsing app.',
                 'The output of `docker inspect` can be piped into the above for easy querying.',
                 '`path` is a dot-notation series of nested key paths to traverse the input JSON.'
@@ -85,8 +85,8 @@
             },
             {
               'label': 'install laravel via composer',
+              'cmd': 'NEW_UUID==$(docker run --rm alpine sh -c "cat \/dev\/urandom | tr -dc \'a-zA-Z0-9\' | fold -w 32 | head -n 1;") && docker run -it --rm -v $(pwd):\/${NEW_UUID} -w \/${NEW_UUID} --network=net composer:latest composer create-project laravel\/laravel .',
               'lines': [
-                'NEW_UUID==$(docker run --rm alpine sh -c "cat \/dev\/urandom | tr -dc \'a-zA-Z0-9\' | fold -w 32 | head -n 1;") && docker run -it --rm -v $(pwd):\/${NEW_UUID} -w \/${NEW_UUID} --network=net composer:latest composer create-project laravel\/laravel .',
                 '`NEW_UUID` is just a random 32 character string (only available on UNIX systems with a \/dev\/urandom).',
                 '`pwd` should be the empty directory you want laravel installed into.',
                 '`net` is the network on which you have all your other services running (eg. nginx, php, mysql, redis).'
