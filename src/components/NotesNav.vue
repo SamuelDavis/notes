@@ -49,6 +49,7 @@
         padding: 0.5rem;
         display: block;
         text-decoration: none;
+        text-transform: uppercase;
       }
     }
   }

@@ -79,21 +79,21 @@
   }
 
   div {
-    border: $border-size solid;
     border-radius: 5px;
-    padding: calc(1rem - #{$border-size}) 0.5rem;
+    box-shadow: inset 0 0 1px 0 black, 0 0 1px 0 black;
+    padding: 1rem;
+    background-color: transparent;
 
     &.labeled {
       .label {
+        position: relative;
         top: -1.5rem;
         text-transform: uppercase;
-        position: relative;
         background-color: $label-bg-color;
         box-shadow: 0 0 5px 5px $label-bg-color;
         width: fit-content;
       }
     }
-
   }
 
   .code {

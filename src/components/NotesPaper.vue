@@ -56,7 +56,7 @@
     .content {
       flex: 1;
       padding: 0 $rule-width 1rem $rule-size;
-      background-image: repeating-linear-gradient(transparent 0px, transparent calc(1rem - 2px), $line-color calc(1rem - 1px), $line-color 1rem);
+      background-image: repeating-linear-gradient(transparent 0px, transparent calc(1rem - 1px), $line-color 1rem);
     }
 
     sup, sub, small {
