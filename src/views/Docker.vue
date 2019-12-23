@@ -21,7 +21,7 @@
     data () {
       return {
         template: {
-          'notes': [
+          'Faq': [
             {
               'label': 'listening for HTTP requests in a docker container',
               'lines': [
@@ -179,7 +179,7 @@
 
 <style lang="scss" scoped>
   h2 {
-    text-transform: uppercase;
+    text-transform: capitalize;
   }
 
   section {

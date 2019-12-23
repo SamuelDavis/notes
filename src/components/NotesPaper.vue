@@ -51,6 +51,7 @@
       height: 4rem;
       justify-content: center;
       align-items: center;
+      text-transform: uppercase;
     }
 
     .content {

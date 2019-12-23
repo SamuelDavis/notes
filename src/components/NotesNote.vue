@@ -12,31 +12,34 @@
 
 <script>
   function formatLine (line) {
-    return line.split('').reduce((acc, chr, i, arr) => {
-      const state = acc[acc.length - 1][0]
+    return line
+      .split('')
+      .reduce((acc, chr, i, arr) => {
+        const state = acc[acc.length - 1][0]
 
-      switch (state) {
-        case '`':
-          if (chr === '`') { return acc.push(['', '']) && acc }
-          break
-        case '\'':
-          if (chr === '\'') { return acc.push(['', '']) && acc }
-          break
-        default: {
-          switch (chr) {
-            case '`':
-              return acc.push(['`', '']) && acc
-            case '\'':
-              if (!/\b/.test(arr[i - 1]))
-                return acc.push(['\'', '']) && acc
+        switch (state) {
+          case '`':
+            if (chr === '`') { return acc.push(['', '']) && acc }
+            break
+          case '\'':
+            if (chr === '\'') { return acc.push(['', '']) && acc }
+            break
+          default: {
+            switch (chr) {
+              case '`':
+                return acc.push(['`', '']) && acc
+              case '\'':
+                if (!/\b/.test(arr[i - 1]))
+                  return acc.push(['\'', '']) && acc
+            }
           }
         }
-      }
 
-      acc[acc.length - 1][1] += chr
+        acc[acc.length - 1][1] += chr
 
-      return acc
-    }, [['', '']])
+        return acc
+      }, [['', '']])
+      .filter(([_, text]) => Boolean(text))
   }
 
   export default {
@@ -88,11 +91,14 @@
       .label {
         position: relative;
         top: -1.5rem;
-        text-transform: uppercase;
         background-color: $label-bg-color;
-        box-shadow: 0 0 5px 5px $label-bg-color;
+        box-shadow: 0 0 2px 2px $label-bg-color;
         width: fit-content;
       }
+    }
+
+    *:not(:first-child) {
+      margin-top: 1rem;
     }
   }
 
