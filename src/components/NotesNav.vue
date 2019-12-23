@@ -1,7 +1,7 @@
 <template>
   <nav>
     <ol>
-      <li :class="{active: name === $route.name}" :key="i" v-for="({path, name}, i) in routes">
+      <li class="shadow" :class="{active: name === $route.name}" :key="i" v-for="({path, name}, i) in routes">
         <router-link :to="path" class="inverted-text" v-text="name"/>
       </li>
     </ol>
@@ -22,38 +22,32 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../assets/_variables.scss";
-
-  $tabRadius: 3px;
-
-  * {
+  ol {
+    list-style-type: none;
     margin: 0;
     padding: 0;
-  }
-
-  ol {
-    list-style: none;
 
     > li {
-      border-top-right-radius: $tabRadius;
-      border-bottom-right-radius: $tabRadius;
-      margin-bottom: 0.1rem;
-      box-shadow: 2px 1px 3px 0 rgba(0,0,0,0.5);
+      margin-bottom: 0.25rem;
+      background-color: #247BA0;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
       width: fit-content;
-      background-color: $nav-bg-color;
 
       &:first-child {
-        background-color: $nav-active-bg-color;
+        background-color: #50514F;
       }
 
       &.active {
         position: relative;
-        left: -0.5rem;
+        left: -1rem;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
       }
 
       a {
-        display: block;
         padding: 0.5rem;
+        display: block;
         text-decoration: none;
       }
     }

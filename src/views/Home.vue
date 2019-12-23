@@ -1,6 +1,6 @@
 <template>
-  <div class="home inverted-text">
-    <div>
+  <div class="inverted-text" id="home">
+    <div class="content">
       <h1>Notes</h1>
       <hr>
       <h4>If lost, please return to:</h4>
@@ -33,19 +33,17 @@
   }
 </script>
 
-<style lang="scss" scoped>
-  @import "./../assets/_variables.scss";
-
-  .home {
-    background-color: $cover-color;
+<style lang="scss">
+  #home {
     text-align: center;
+    background-color: #50514F;
 
-    div {
-      padding: 5%;
-      margin: 5%;
-      text-align: left;
+    > .content {
       display: inline-block;
+      text-align: left;
       border: 1px solid white;
+      padding: 1rem;
+      margin: 1rem;
 
       * {
         display: block;
@@ -56,8 +54,7 @@
       }
 
       p {
-        margin: 0;
-        font-size: 80%;
+        margin-top: 0;
       }
     }
   }

@@ -1,3 +1,15 @@
+<template>
+  <div :class="{labeled: Boolean(label)}">
+    <h4 class="label" v-if="label" v-text="label"/>
+    <code class="cmd" v-if="cmd" v-text="cmd"/>
+    <ul v-if="formattedLines.length">
+      <li :key="i" v-for="(line, i) in formattedLines">
+        <span :class="c" :is="is" :key="j" v-for="({is, text, class: c}, j) in line" v-text="text"/>
+      </li>
+    </ul>
+  </div>
+</template>
+
 <script>
   function formatLine (line) {
     return line.split('').reduce((acc, chr, i, arr) => {
@@ -29,50 +41,70 @@
 
   export default {
     props: {
-      content: [Array, Object]
+      label: String,
+      cmd: String,
+      lines: Array,
     },
     name: 'notes-note',
-    render (h) {
-      if (this.content instanceof Array)
-        return h('ul', this.content.map((line) => {
-          const formatted = formatLine(line).map(([type, text]) => {
+    computed: {
+      formattedLines () {
+        return this.lines.map((line) => {
+          return formatLine(line).map(([type, text]) => {
             switch (type) {
               case '`':
-                return h('code', { class: 'highlight-1' }, text)
+                return { is: 'code', class: 'code', text }
               case '\'':
-                return h('span', { class: 'highlight-2' }, text)
+                return { is: 'span', class: 'notice', text }
               default:
-                return h('span', text)
+                return { is: 'span', class: undefined, text }
             }
           })
-          return h('li', formatted)
-        }))
-      return h('div', [
-        h('h4', this.content.label),
-        h('code', { class: 'highlight-3' }, this.content.cmd),
-        h('notes-note', { props: { content: this.content.lines } })
-      ])
+        })
+      }
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  @import "../assets/_variables.scss";
+  $border-size: 1px;
+  $label-bg-color: rgba(255, 255, 255, 0.90);
+  $code-highlight-a-color: rgba(255, 150, 150, 0.25);
+  $code-highlight-b-color: rgba(150, 255, 150, 0.25);
+  $code-highlight-c-color: rgba(150, 150, 255, 0.25);
 
-  .highlight-1 {
-    @include highlight($code-highlight-a-color)
+  @mixin highlight($color) {
+    background-color: $color;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 2px $color;
   }
 
-  .highlight-2 {
-    @include highlight($code-highlight-b-color)
+  div {
+    border: $border-size solid;
+    border-radius: 5px;
+    padding: calc(1rem - #{$border-size}) 0.5rem;
+
+    &.labeled {
+      .label {
+        top: -1.5rem;
+        text-transform: uppercase;
+        position: relative;
+        background-color: $label-bg-color;
+        box-shadow: 0 0 5px 5px $label-bg-color;
+        width: fit-content;
+      }
+    }
+
   }
 
-  .highlight-3 {
-    @include highlight($code-highlight-c-color)
+  .code {
+    @include highlight(rgba(255, 150, 150, 0.25));
   }
 
-  h4 {
-    width: fit-content;
-    font-weight: bold;
+  .notice {
+    @include highlight(rgba(150, 255, 150, 0.25));
+  }
+
+  .cmd {
+    @include highlight(rgba(150, 150, 255, 0.25));
   }
 </style>

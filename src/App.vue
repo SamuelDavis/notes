@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <router-view id="container"/>
-    <notes-nav :routes="routes" id="nav"/>
+    <router-view class="content shadow"/>
+    <notes-nav :routes="routes" class="nav"/>
   </div>
 </template>
 
@@ -27,26 +27,34 @@
 </script>
 
 <style lang="scss">
+  $line-height: 12px;
+
+  .inverted-text, .inverted-text * {
+    color: white;
+    text-shadow: 0 0 3px black;
+  }
+
+  .shadow {
+    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.25);
+  }
+
+  html {
+    font-size: $line-height;
+    line-height: $line-height;
+  }
+
   #app {
     display: flex;
     flex-direction: row;
 
-    #container {
+    > .content {
       flex: 1;
       border-radius: 5px;
-      box-shadow: 0 0 3px 0 #888;
     }
 
-    #nav {
-      margin-top: 0.5rem;
+    > .nav {
+      margin-top: 1rem;
       max-width: 20%;
-    }
-  }
-
-  .inverted-text {
-    &, * {
-      color: white;
-      text-shadow: 0 0 1px black;
     }
   }
 </style>

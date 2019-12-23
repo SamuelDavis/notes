@@ -17,14 +17,6 @@ export const routes = [Home, Docker, StyleGuide]
         },
         alias: component.name === 'home' ? '/home' : undefined
     }))
-    .concat(new Array(5).fill(undefined).map((_, i) => {
-        return {
-            component: NotFound,
-            path: `/example-${i}`,
-            name: `example-${i}`,
-            meta: {global: true}
-        };
-    }))
     .concat([{
         component: NotFound,
         name: 'page-missing',

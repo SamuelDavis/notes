@@ -5,9 +5,7 @@
     </template>
     <section :key="label" v-for="(notes, label) in template">
       <h2 v-text="label"/>
-      <notes-note :content="notes" class="note" v-if="typeof notes[0] === 'string'"/>
-      <notes-note :content="note" :key="i" class="note" v-else v-for="(note, i) in notes"/>
-      <hr v-if="label !== Object.keys(template).pop()">
+      <notes-note v-bind="note" :key="i" class="note" v-for="(note, i) in notes"/>
     </section>
   </notes-paper>
 </template>
@@ -50,11 +48,17 @@
             }
           ],
           'vocabulary': [
-            '`Docker` is containerization software: it allows developers to specify the necessary OPS to run their application(s) which can then be `virtualized` or `emulated` by the host.',
-            '`Virtualization` is the process of binding the underlying hosts\' native capabilities to the expected interfaces specified by docker.',
-            '`Emulation` is the process of booting up a small instance of the necessary interfaces.',
-            '`image` is the cached and tagged set of instructions for booting some virtualized software.',
-            '`container` is the built and configured instance of an image.'
+            {
+              'label': undefined,
+              'cmd': undefined,
+              'lines': [
+                '`Docker` is containerization software: it allows developers to specify the necessary OPS to run their application(s) which can then be `virtualized` or `emulated` by the host.',
+                '`Virtualization` is the process of binding the underlying hosts\' native capabilities to the expected interfaces specified by docker.',
+                '`Emulation` is the process of booting up a small instance of the necessary interfaces.',
+                '`image` is the cached and tagged set of instructions for booting some virtualized software.',
+                '`container` is the built and configured instance of an image.'
+              ]
+            }
           ],
           'helpful': [
             {
@@ -95,7 +99,7 @@
           ],
           'inventory': [
             {
-              'label': 'docker ps -a -q',
+              'cmd': 'docker ps -a -q',
               'lines': [
                 '`ps` lists all running docker containers.',
                 '`-a` is optional and flag includes stopped containers.',
@@ -103,13 +107,13 @@
               ]
             },
             {
-              'label': 'docker images',
+              'cmd': 'docker images',
               'lines': [
                 '`images` lists all locally available images.'
               ]
             },
             {
-              'label': 'docker volume ls',
+              'cmd': 'docker volume ls',
               'lines': [
                 '`volume ls` lists all locally created volumes.'
               ]
@@ -117,7 +121,7 @@
           ],
           'introspection': [
             {
-              'label': 'docker inspect container',
+              'cmd': 'docker inspect container',
               'lines': [
                 '`inspect` prints a JSON blob describing low-level information about the given container.',
                 '`container` may refer to either the container id or name (partial matches on id are accepted).'
@@ -126,7 +130,7 @@
           ],
           'cleanup': [
             {
-              'label': 'docker rm -v container',
+              'cmd': 'docker rm -v container',
               'lines': [
                 '`rm` deletes stopped containers.',
                 '`-v` is optional and deletes any volumes associated with the container.',
@@ -134,7 +138,7 @@
               ]
             },
             {
-              'label': 'docker rmi image:tag',
+              'cmd': 'docker rmi image:tag',
               'lines': [
                 '`rmi` deletes locally available images.',
                 '`tag` is optional and defaults to \'latest\'.'
@@ -143,7 +147,7 @@
           ],
           'interaction': [
             {
-              'label': 'docker run --name=name --rm -it --link=container:service --network=net -p hp:cp -v hd:cd image:tag cmd',
+              'cmd': 'docker run --name=name --rm -it --link=container:service --network=net -p hp:cp -v hd:cd image:tag cmd',
               'lines': [
                 '`run` boots spawns a container running the given `image` with the specified `tag`, the `tag` defaults to \'latest\'.',
                 '`--name` is optional and allows you to specify a custom label for the container, the default being a randomly generated name.',
@@ -157,10 +161,10 @@
               ]
             },
             {
-              'label': 'docker commit -a author -m message container image:tag',
+              'cmd': 'docker commit -a author -m message container image:tag',
               'lines': [
                 '`commit` creates an image from a run container.',
-                '`-a` is optional and allows you to specify the commit\'s `author` in the format "First Name Last Name <example@email.com>"',
+                '`-a` is optional and allows you to specify the commit\'s `author` in the format \'"First_Name Last_Name <email@host.tld>"\'',
                 '`-m` is optional and allows you to specify a commit `message` describing what has changed.',
                 '`container` references a local container id or name.',
                 '`image` is the repository used to store the image and `tag` is optional, defaulting to \'latest\'.',
@@ -174,9 +178,15 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../assets/_variables.scss";
+  h2 {
+    text-transform: uppercase;
+  }
+
+  section {
+    margin-top: 1rem;
+  }
 
   .note {
-    margin-top: $line-height;
+    margin-top: 1rem;
   }
 </style>
