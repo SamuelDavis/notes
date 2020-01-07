@@ -35,8 +35,12 @@
 
 <style lang="scss">
   #home {
+    font-size: 2rem;
+    line-height: 2rem;
     text-align: center;
     background-color: #50514F;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
 
     > .content {
       display: inline-block;
