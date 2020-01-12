@@ -9,10 +9,6 @@
 </template>
 
 <script>
-  import ColorRepo from '../services/ColorRepo'
-
-  const colorRepo = new ColorRepo()
-
   export default {
     name: 'notes-nav',
     props: {

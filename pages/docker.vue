@@ -5,17 +5,19 @@
     </template>
     <section :key="label" v-for="(notes, label) in template">
       <h2 v-text="label"/>
-      <notes-note v-bind="note" :key="i" class="note" v-for="(note, i) in notes"/>
+      <notes-note :key="i" class="note" v-bind="note" v-for="(note, i) in notes"/>
     </section>
   </notes-paper>
 </template>
 
 <script>
-  import NotesNote from '../components/NotesNote.vue'
+  import NotesNote from '../components/NotesNote'
+  import NotesPaper from '../components/NotesPaper'
 
   export default {
     name: 'docker',
     components: {
+      NotesPaper,
       NotesNote
     },
     data () {

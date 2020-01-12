@@ -1,5 +1,5 @@
 <template>
-  <div class="inverted-text" id="home">
+  <div class="inverted-text" id="cover">
     <div class="content">
       <h1>Notes</h1>
       <hr>
@@ -19,7 +19,7 @@
 
 <script>
   export default {
-    name: 'home',
+    name: 'cover',
     data () {
       return {
         phone: '802-745-0057',
@@ -34,7 +34,7 @@
 </script>
 
 <style lang="scss">
-  #home {
+  #cover {
     font-size: 2rem;
     line-height: 2rem;
     text-align: center;

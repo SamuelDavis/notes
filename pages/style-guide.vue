@@ -27,7 +27,12 @@
 </template>
 
 <script>
+  import NotesPaper from '../components/NotesPaper'
+
   export default {
-    name: 'style-guide'
+    name: 'style-guide',
+    components: {
+      NotesPaper
+    }
   }
 </script>

@@ -1,26 +1,29 @@
 <template>
   <div id="app">
-    <router-view class="content shadow"/>
+    <nuxt class="content shadow"/>
     <notes-nav :routes="routes" class="nav"/>
   </div>
 </template>
 
 <script>
-  import Home from './views/Home'
-  import NotesPaper from './components/NotesPaper'
-  import NotesNav from './components/NotesNav'
-  import { routes } from './router/index'
+  import NotesNav from '../components/NotesNav'
 
   export default {
-    name: 'app',
     components: {
-      Home,
-      NotesPaper,
       NotesNav
     },
-    computed: {
-      routes () {
-        return routes.filter((route) => route.meta && route.meta.global)
+    data () {
+      return {
+        routes: [{
+          path: '/',
+          name: 'cover'
+        }, {
+          path: '/docker',
+          name: 'docker'
+        }, {
+          path: '/style-guide',
+          name: 'style-guide'
+        }]
       }
     }
   }
@@ -29,18 +32,18 @@
 <style lang="scss">
   $line-height: 12px;
 
+  html {
+    font-size: $line-height;
+    line-height: $line-height;
+  }
+
   .inverted-text, .inverted-text * {
     color: white;
     text-shadow: 0 0 3px black;
   }
 
   .shadow {
-    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.25);
-  }
-
-  html {
-    font-size: $line-height;
-    line-height: $line-height;
+    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.25);
   }
 
   #app {

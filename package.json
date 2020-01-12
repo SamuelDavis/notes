@@ -1,22 +1,22 @@
 {
   "name": "notes",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Documentation for all the things I might forget.",
+  "author": "Samuel Davis &lt;samueljakdavis@gmail.com&gt;",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "dev": "nuxt --hostname=0.0.0.0",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
-    "core-js": "^3.4.3",
-    "vue": "^2.6.10",
-    "vue-router": "^3.1.3"
+    "nuxt": "^2.0.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.1.0",
-    "@vue/cli-plugin-router": "^4.1.0",
-    "@vue/cli-service": "^4.1.0",
-    "sass": "^1.23.7",
-    "sass-loader": "^8.0.0",
-    "vue-template-compiler": "^2.6.10"
+    "node-sass": "^4.13.0",
+    "push-dir": "^0.4.1",
+    "sass-loader": "^8.0.1"
   }
 }
