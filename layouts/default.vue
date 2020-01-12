@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nuxt class="content shadow"/>
-    <notes-nav :routes="routes" class="nav"/>
+    <notes-nav class="nav"/>
   </div>
 </template>
 
@@ -11,20 +11,6 @@
   export default {
     components: {
       NotesNav
-    },
-    data () {
-      return {
-        routes: [{
-          path: '/',
-          name: 'cover'
-        }, {
-          path: '/docker',
-          name: 'docker'
-        }, {
-          path: '/style-guide',
-          name: 'style-guide'
-        }]
-      }
     }
   }
 </script>

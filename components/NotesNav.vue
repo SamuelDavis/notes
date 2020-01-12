@@ -1,7 +1,7 @@
 <template>
   <nav>
     <ol>
-      <li class="shadow" :class="{active: name === $route.name}" :key="i" v-for="({path, name}, i) in routes">
+      <li :class="{active: name === $route.name}" :key="i" class="shadow" v-for="({path, name}, i) in routes">
         <router-link :to="path" class="inverted-text" v-text="name"/>
       </li>
     </ol>
@@ -12,7 +12,14 @@
   export default {
     name: 'notes-nav',
     props: {
-      routes: Array
+      routes: {
+        type: Array,
+        default () {
+          return this.$router.options.routes.reduce((acc, route) => {
+            return route.name === 'index' ? [route, ...acc] : [...acc, route]
+          }, [])
+        }
+      }
     }
   }
 </script>
