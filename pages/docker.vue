@@ -119,7 +119,7 @@
       <div>
         <code class="cmd">docker run --name=name --rm -it --link=container:service --network=net -p hp:cp -v hd:cd image:tag cmd</code>
         <ul>
-          <li><code>run</code> boots spawns a container running the given <code>image</code> with the specified <code>tag</code>, the <code>tag</code> defaults to <code>latest</code>.</li>
+          <li><code>run</code> spawns a container running the given <code>image</code> with the specified <code>tag</code>, the <code>tag</code> defaults to <code>latest</code>.</li>
           <li><code>--name</code> is optional and allows you to specify a custom label for the container, the default being a randomly generated name.</li>
           <li><code>--rm</code> is optional and deletes the container when it stops.</li>
           <li><code>-it</code> are optional and make the container interactive via a tty connection.</li>
