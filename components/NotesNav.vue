@@ -24,6 +24,7 @@
     padding: 0;
 
     > li {
+      writing-mode: vertical-lr;
       margin-bottom: 0.25rem;
       background-color: #247BA0;
       border-top-right-radius: 5px;
@@ -45,7 +46,7 @@
         padding: 0.5rem;
         display: block;
         text-decoration: none;
-        text-transform: uppercase;
+        text-transform: capitalize;
       }
     }
   }
