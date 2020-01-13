@@ -1,0 +1,8 @@
+$code-highlight-a-color: rgba(255, 150, 150, 0.25);
+$code-highlight-b-color: rgba(150, 150, 255, 0.25);
+
+@mixin highlight($color, $blur:2px) {
+  background-color: $color;
+  border-radius: 5px;
+  box-shadow: 0 0 $blur $blur $color;
+}

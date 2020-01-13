@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nuxt class="content shadow"/>
+    <nuxt class="page shadow"/>
     <notes-nav class="nav"/>
   </div>
 </template>
@@ -36,7 +36,7 @@
     display: flex;
     flex-direction: row;
 
-    > .content {
+    > .page {
       flex: 1;
       border-radius: 5px;
     }

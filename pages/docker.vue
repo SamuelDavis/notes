@@ -155,16 +155,10 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "assets/highlight";
+
   $border-size: 1px;
   $label-bg-color: rgba(255, 255, 255, 0.90);
-  $code-highlight-a-color: rgba(255, 150, 150, 0.25);
-  $code-highlight-b-color: rgba(150, 150, 255, 0.25);
-
-  @mixin highlight($color) {
-    background-color: $color;
-    border-radius: 5px;
-    box-shadow: 0 0 2px 2px $color;
-  }
 
   section {
     margin-bottom: 1rem;
