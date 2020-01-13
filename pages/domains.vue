@@ -126,10 +126,6 @@
           content: '\2013';
           margin-right: 0.5rem;
         }
-
-        a {
-          text-decoration: none;
-        }
       }
     }
   }
