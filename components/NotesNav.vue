@@ -15,9 +15,11 @@
       routes: {
         type: Array,
         default () {
-          return this.$router.options.routes.reduce((acc, route) => {
-            return route.name === 'index' ? [route, ...acc] : [...acc, route]
-          }, [])
+          return this.$router.options.routes
+            .reduce((acc, route) => {
+              return route.name === 'index' ? [route, ...acc] : [...acc, route]
+            }, [])
+            .sort((a, b) => a.path.indexOf(b.path))
         }
       }
     }
