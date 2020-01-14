@@ -1,7 +1,7 @@
 <template>
   <nav>
     <ol>
-      <li :class="{active: name === $route.name}" :key="i" class="shadow" v-for="({path, name}, i) in routes">
+      <li :class="{active: path.slice(1) && $route.path.includes(path)}" :key="i" class="shadow" v-for="({path, name}, i) in routes">
         <router-link :to="path" class="inverted-text" v-text="name"/>
       </li>
     </ol>
@@ -38,15 +38,12 @@
       border-bottom-right-radius: 5px;
       width: fit-content;
 
-      &:first-child {
-        background-color: #50514F;
-      }
-
       &.active {
         position: relative;
         left: -1rem;
         border-top-left-radius: 2px;
         border-bottom-left-radius: 2px;
+        background-color: #50514F;
       }
 
       a {

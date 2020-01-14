@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <nuxt class="page shadow"/>
-    <notes-nav class="nav"/>
+    <div id="nav-container">
+      <notes-nav :style="{zIndex: routes.length - i}" :key="i" :routes="nav.routes" v-for="(nav, i) in routes" v-if="shouldShowNav(nav)"/>
+    </div>
   </div>
 </template>
 
@@ -11,6 +13,30 @@
   export default {
     components: {
       NotesNav
+    },
+    data () {
+      const routes = [...this.$router.options.routes]
+        .reduce((acc, route) => {
+          const parts = route.path.slice(1).split('/')
+          const namespace_parts = parts.slice(0, parts.length - 1)
+          const namespace = namespace_parts.join('.')
+          if (!acc.hasOwnProperty(namespace)) {
+            acc[namespace] = {
+              namespace,
+              namespace_parts,
+              routes: []
+            }
+          }
+          acc[namespace].routes.push(route)
+          acc[namespace].routes.sort((a, b) => a.path.length - b.path.length)
+          return acc
+        }, {})
+      return { routes: Object.values(routes).sort((a, b) => b.namespace_parts.length - a.namespace_parts.length) }
+    },
+    methods: {
+      shouldShowNav (group) {
+        return this.$route.path.slice(1).replace('\/', '.').includes(group.namespace)
+      }
     }
   }
 </script>
@@ -21,6 +47,13 @@
   html {
     font-size: $line-height;
     line-height: $line-height;
+  }
+
+  #nav-container {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: row;
   }
 
   .inverted-text, .inverted-text * {
