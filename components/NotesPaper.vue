@@ -17,6 +17,8 @@
 </script>
 
 <style lang="scss">
+  @import "../assets/highlight";
+
   $rule-color: #efe4e4;
   $line-color: #d9eaf3;
   $text-color: #212e64;
@@ -37,6 +39,10 @@
       padding: 0;
       color: $text-color;
       border-color: $text-color;
+    }
+
+    em {
+      @include highlight($code-highlight-a-color);
     }
 
     .rule {
@@ -60,12 +66,15 @@
       padding: 0 $rule-width 0 $rule-size;
       background-image: repeating-linear-gradient(transparent 0px, transparent calc(1rem - 1px), $line-color 1rem);
 
-      section, h1 {
-        margin-bottom: 1rem;
+      section, section > div {
+        > * {
+          margin-bottom: 1rem;
+        }
       }
 
-      h1, h2 {
+      h1, h2, h3 {
         text-transform: capitalize;
+        margin-bottom: 1rem;
       }
 
       sup, sub, small {

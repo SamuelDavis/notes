@@ -1,9 +1,9 @@
 <template>
   <blockquote :cite="href">
     <slot/>
-    <footer>
-      <span v-text="source"/>,
-      <notes-citation :href="href" v-text="cite"/>
+    <footer v-if="source || cite">
+      <span v-if="source" v-text="source"/>
+      <notes-citation :href="href" v-if="cite">{{cite}}</notes-citation>
     </footer>
   </blockquote>
 </template>
@@ -30,7 +30,6 @@
   blockquote {
     @include highlight(rgba(100, 200, 100, 0.1), 0.5rem);
     width: fit-content;
-    padding: 1rem;
     border-radius: 5px;
 
     p {
@@ -49,6 +48,10 @@
       &::before {
         content: '\2013';
         margin-right: 0.5rem;
+      }
+
+      *:not(:last-child)::after {
+        content: ','
       }
     }
   }
