@@ -160,14 +160,7 @@
   $border-size: 1px;
   $label-bg-color: rgba(255, 255, 255, 0.90);
 
-  section {
-    margin-bottom: 1rem;
-
-    h1 {
-      text-transform: capitalize;
-      margin-bottom: 1rem;
-    }
-
+  .content {
     div {
       border-radius: 5px;
       box-shadow: inset 0 0 1px 0 black, 0 0 1px 0 black;
@@ -175,7 +168,6 @@
       margin-bottom: 1rem;
 
       h2 {
-        text-transform: capitalize;
         top: -1.5rem;
         position: relative;
         margin-bottom: -1rem;

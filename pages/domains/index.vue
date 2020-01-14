@@ -9,10 +9,10 @@
     <section>
       <h1>Vocabulary</h1>
       <ul>
-        <li>An <code>application</code> is a module or group of modules which implement a specific piece of functionality.</li>
-        <li>A <code>module</code> is a collection of one or more functions which can be exported and utilized as a group. Depending on the language context, a module may or may not be stateless; some languages might refer to a module as a <i>class</i>.</li>
-        <li>A <code>monolith</code> is a singular repository or application which implements behaviors across a wide range of domains.</li>
-        <li>An <code>interface</code> is one or more applications which mediates a communication protocol for another application.</li>
+        <li>An <em>application</em> is a module or group of modules which implement a specific piece of functionality.</li>
+        <li>A <em>module</em> is a collection of one or more functions which can be exported and utilized as a group. Depending on the language context, a module may or may not be stateless; some languages might refer to a module as a <i>class</i>.</li>
+        <li>A <em>monolith</em> is a singular repository or application which implements behaviors across a wide range of domains.</li>
+        <li>An <em>interface</em> is one or more applications which mediates a communication protocol for another application.</li>
       </ul>
     </section>
     <section>
@@ -25,10 +25,9 @@
         <a href="https://www.youtube.com/watch?v=6U7cLUygMeI" target="_blank">Dave Thomas</a> and <a href="https://www.youtube.com/watch?v=Nsjsiz2A9mg" target="_blank">Robert Martin</a> make very compelling arguments that frameworks should be thought of as <i>plugins</i> to your application or <i>interfaces</i> to the Internet. It <i>isn't</i> a <i><a href="https://laravel.com/" target="_blank">Laravel</a></i> app. It isn't a <i><a href="https://www.phoenixframework.org/" target="_blank">Phoenix</a></i> app or a <i><a href="https://rubyonrails.org/" target="_blank">Rails</a></i> app. It's a: blogging app, banking app, search engine, content aggregator, etc. Your code <em>right down to the filesystem</em>, should express your intent. Starting with a framework is an invitation to write a monolith because frameworks are, by their very nature, monolithic: they pre-package as many domains as possible to ease your integration (with the web, in this case).
       </p>
 
-      <blockquote cite="https://overcast.fm/+MBmWqe1VQ">
+      <notes-quote cite="Build your own SaaS" href="https://overcast.fm/+MBmWqe1VQ" source="Taylor Otwell">
         <p>Code you don't invoke won't impact performance.</p>
-        <footer>Taylor Otwell, <cite><a href="https://overcast.fm/+MBmWqe1VQ" target="_blank">Build your SaaS</a></cite></footer>
-      </blockquote>
+      </notes-quote>
       <i>...but it can certainly muddy the waters.</i>
     </section>
     <section>
@@ -60,12 +59,14 @@
 </template>
 
 <script>
-  import NotesPaper from '../components/NotesPaper.vue'
+  import NotesPaper from '../../components/NotesPaper'
+  import NotesQuote from '../../components/NotesQuote'
 
   export default {
     name: 'domains',
     components: {
-      NotesPaper
+      NotesPaper,
+      NotesQuote
     },
     data () {
       return {
@@ -83,49 +84,11 @@
   @import "assets/highlight";
 
   .content {
-    h1, h2 {
-      text-transform: capitalize;
-    }
-
-    section, h1, p {
-      margin-bottom: 1rem;
-    }
-
-    h2 {
-      font-size: medium;
-    }
-
-    code {
+    code, em {
       @include highlight($code-highlight-a-color);
 
       &.cmd {
         @include highlight($code-highlight-b-color);
-      }
-    }
-
-    blockquote {
-      @include highlight(rgba(100, 200, 100, 0.1), 0.5rem);
-      width: fit-content;
-      padding: 1rem;
-      border-radius: 5px;
-
-      p {
-        &::before {
-          content: '\201C';
-        }
-
-        &::after {
-          content: '\201D';
-        }
-      }
-
-      footer {
-        text-align: right;
-
-        &::before {
-          content: '\2013';
-          margin-right: 0.5rem;
-        }
       }
     }
   }
