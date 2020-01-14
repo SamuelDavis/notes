@@ -23,16 +23,24 @@
     <ol>
       <li :key="i" v-for="i in 3" v-text="`ol item ${i}`"/>
     </ol>
+    <notes-citation href="#href">Citation</notes-citation>
+    <notes-quote href="#quote" source="source" cite="citation">
+      <p>Quotation</p>
+    </notes-quote>
   </notes-paper>
 </template>
 
 <script>
   import NotesPaper from '../components/NotesPaper'
+  import NotesCitation from '../components/NotesCitation'
+  import NotesQuote from '../components/NotesQuote'
 
   export default {
     name: 'style-guide',
     components: {
-      NotesPaper
+      NotesPaper,
+      NotesCitation,
+      NotesQuote
     }
   }
 </script>

@@ -57,22 +57,30 @@
 
     .content {
       flex: 1;
-      padding: 0 $rule-width 1rem $rule-size;
+      padding: 0 $rule-width 0 $rule-size;
       background-image: repeating-linear-gradient(transparent 0px, transparent calc(1rem - 1px), $line-color 1rem);
-    }
 
-    sup, sub, small {
-      line-height: 0;
-    }
+      section, h1 {
+        margin-bottom: 1rem;
+      }
 
-    ul, ol {
-      list-style-position: inside;
-    }
+      h1, h2 {
+        text-transform: capitalize;
+      }
 
-    hr {
-      height: 1rem;
-      border: 0;
-      background-image: linear-gradient(transparent 0px, transparent 0.4rem, black, transparent 0.5rem, transparent 1rem);
+      sup, sub, small {
+        line-height: 0;
+      }
+
+      ul, ol {
+        list-style-position: inside;
+      }
+
+      hr {
+        height: 1rem;
+        border: 0;
+        background-image: linear-gradient(transparent 0px, transparent 0.4rem, black, transparent 0.5rem, transparent 1rem);
+      }
     }
   }
 </style>
