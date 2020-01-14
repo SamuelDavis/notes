@@ -10,7 +10,10 @@
   export default {
     name: 'notes-citation',
     props: {
-      href: String
+      href: {
+        type: String,
+        default: '#'
+      }
     }
   }
 </script>

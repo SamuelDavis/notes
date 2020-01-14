@@ -84,7 +84,7 @@
   @import "assets/highlight";
 
   .content {
-    code, em {
+    code {
       @include highlight($code-highlight-a-color);
 
       &.cmd {

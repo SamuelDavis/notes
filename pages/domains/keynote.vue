@@ -14,7 +14,7 @@
       </ul>
     </section>
     <section>
-      <h1>Coupling</h1>
+      <h1>Quotes</h1>
       <notes-quote cite="EMPEX NYC" href="https://www.youtube.com/embed/6U7cLUygMeI" source="Dave Thomas">
         <p>The more things that are coupled the more they resist change.</p>
         <p>The more things are interdependent, the harder it is to change one of them; because dependencies ripple through the entire application.</p>
@@ -22,12 +22,12 @@
       </notes-quote>
     </section>
     <section>
-      <h1>Objective</h1>
+      <h1>Takeaways</h1>
       <p>Our mission is to create well <em>structured</em>, highly <em>decoupled</em> solutions to problems.</p>
       <p>Our hope is that this will lead to code that is easier to <em>change</em>, <em>deploy</em>, <em>maintain</em>, and <em>reuse</em>.</p>
     </section>
     <section>
-      <h1>Todo</h1>
+      <h1>Objectives</h1>
       <ul>
         <li>clearly identify the application</li>
         <li>isolate configuration</li>
@@ -48,7 +48,7 @@
   import NotesCitation from '../../components/NotesCitation'
 
   export default {
-    name: 'dave-thomas-empex',
+    name: 'keynote',
     components: {
       NotesPaper,
       NotesQuote,
@@ -56,12 +56,3 @@
     }
   }
 </script>
-
-<style lang="scss" scoped>
-  @import "../../assets/highlight";
-
-  em {
-    @include highlight($code-highlight-a-color);
-  }
-
-</style>
