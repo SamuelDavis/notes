@@ -63,7 +63,6 @@
   import NotesQuote from '../../components/NotesQuote'
 
   export default {
-    name: 'domains',
     components: {
       NotesPaper,
       NotesQuote
@@ -81,7 +80,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "assets/highlight";
+  @import "../../assets/highlight";
 
   .content {
     code {

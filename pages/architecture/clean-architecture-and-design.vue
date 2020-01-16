@@ -68,7 +68,6 @@
   import NotesQuote from '../../components/NotesQuote'
 
   export default {
-    name: 'clean-architecture-and-deign',
     components: {
       NotesPaper,
       NotesCitation,

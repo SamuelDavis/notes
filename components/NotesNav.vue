@@ -8,7 +8,7 @@
     </div>
     <nav class="nav-container">
       <ol>
-        <li :class="{active: path.slice(1) && $route.path.includes(path)}" :key="i" class="shadow" v-for="({path, name}, i) in routes">
+        <li :class="{active}" :key="i" class="shadow" v-for="({path, name, active}, i) in navItems">
           <router-link :to="path" class="inverted-text" v-text="name"/>
         </li>
       </ol>
@@ -34,6 +34,17 @@
             }, [])
             .sort((a, b) => a.path.indexOf(b.path))
         }
+      }
+    },
+    computed: {
+      navItems() {
+        return this.routes.map((route) => {
+          return {
+            active: this.$route.path === route.path || (route.path !== "/" && this.$route.path.includes(route.path)),
+            path: route.path,
+            name: route.name.split('-').slice(this.depth - 1).join('-'),
+          }
+        })
       }
     }
   }

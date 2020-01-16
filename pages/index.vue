@@ -19,7 +19,6 @@
 
 <script>
   export default {
-    name: 'index',
     data () {
       return {
         phone: '802-745-0057',

@@ -145,7 +145,7 @@
 </template>
 
 <script>
-  import NotesPaper from '../components/NotesPaper'
+  import NotesPaper from '../../components/NotesPaper'
 
   export default {
     components: {
@@ -155,7 +155,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "assets/highlight";
+  @import "../../assets/highlight";
 
   $border-size: 1px;
   $label-bg-color: rgba(255, 255, 255, 0.90);

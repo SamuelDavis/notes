@@ -38,7 +38,7 @@
 </script>
 
 <style lang="scss">
-  $line-height: 12px;
+  $line-height: 16px;
 
   html {
     font-size: $line-height;

@@ -48,7 +48,6 @@
   import NotesCitation from '../../components/NotesCitation'
 
   export default {
-    name: 'keynote',
     components: {
       NotesPaper,
       NotesQuote,

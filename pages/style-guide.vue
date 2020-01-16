@@ -36,7 +36,6 @@
   import NotesQuote from '../components/NotesQuote'
 
   export default {
-    name: 'style-guide',
     components: {
       NotesPaper,
       NotesCitation,
