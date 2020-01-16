@@ -5,151 +5,164 @@
     </template>
     <section>
       <h1>FAQ</h1>
-      <div>
-        <h2>listening for HTTP requests in a docker container</h2>
-        <p>If listening for requests using PHP or node, be sure to specify the host as <code>0.0.0.0</code> rather than <code>localhost</code>. Running a PHP or node server listening on <code>localhost:8080</code>, for example, will only accept requests originating from within the Docker container itself. <code>0.0.0.0:8080</code> would accept a request from anywhere on port <code>8080</code></p>
-      </div>
-      <div>
-        <h2>reducing image size</h2>
-        <p>Docker caches every command in a Dockerfile when building it into an image. To reduce the size of a docker image: combine as many commands into single lines as possible (usually by use of the <code>&&</code> bash operator.</p>
-      </div>
-      <div>
-        <h2><code>COPY</code> vs <code>ADD</code></h2>
-        <p>Prefer <code>COPY</code>. <code>COPY</code> simply copies a file from the build context/image to the container. Docker's <code>ADD</code> command is a more robust version of <code>COPY</code> in that it supports fetching from URLs and will automatically untar compressed archives.</p>
-      </div>
-      <div>
-        <h2>mounting directories in the Windows Linux Subsystem</h2>
-        <p>WLS mounts the Windows host to <code>/mnt</code>, eg: <code>C:\</code> is the equivalent of <code>/mnt/c/</code>. However, Docker Desktop (for Windows) expects mounts to originate with <code>/c</code>. The best solution is to leverage WLS' mount capabilities to just bind <code>/mnt/c</code> to <code>/c</code> with <code class="cmd">sudo mkdir /c && mount --bind /mnt/c /c</code>. Alternatively, you can manually, explicitly bind mount paths so that the host path begins at <code>/c</code> rather than using shortcuts like <code>pwd</code> which may originate with <code>/mnt</code>. This is caused by the fact Docker doesn't have access to the WLS filesystem, so any work you do should be in the Windows host file system available through <code>/mnt/c</code> and its sub-directories.</p>
-      </div>
+      <notes-outline label="listening for HTTP requests in a docker container">
+        <p>If listening for requests using PHP or node, be sure to specify the host as <em>0.0.0.0</em> rather than <em>localhost</em>. Running a PHP or node server listening on <em>localhost:8080</em>, for example, will only accept requests originating from within the Docker container itself. <em>0.0.0.0:8080</em> would accept a request from anywhere on port <em>8080</em></p>
+      </notes-outline>
+      <notes-outline label="reducing image size">
+        <p>Docker caches every command in a Dockerfile when building it into an image. To reduce the size of a docker image: combine as many commands into single lines as possible (usually by use of the <em>&&</em> bash operator.</p>
+      </notes-outline>
+      <notes-outline>
+        <template v-slot:label>
+          <em>COPY</em> vs <em>ADD</em>
+        </template>
+        <p>Prefer <em>COPY</em>. <em>COPY</em> simply copies a file from the build context/image to the container. Docker's <em>ADD</em> command is a more robust version of <em>COPY</em> in that it supports fetching from URLs and will automatically untar compressed archives.</p>
+      </notes-outline>
+      <notes-outline label="mounting directories in the Windows Linux Subsystem">
+        <p>WLS mounts the Windows host to <em>/mnt</em>, eg: <em>C:\</em> is the equivalent of <em>/mnt/c/</em>. However, Docker Desktop (for Windows) expects mounts to originate with <em>/c</em>. The best solution is to leverage WLS' mount capabilities to just bind <em>/mnt/c</em> to <em>/c</em> with <code class="cmd">sudo mkdir /c && mount --bind /mnt/c /c</code>. Alternatively, you can manually, explicitly bind mount paths so that the host path begins at <em>/c</em> rather than using shortcuts like <em>pwd</em> which may originate with <em>/mnt</em>. This is caused by the fact Docker doesn't have access to the WLS filesystem, so any work you do should be in the Windows host file system available through <em>/mnt/c</em> and its sub-directories.</p>
+      </notes-outline>
     </section>
     <section>
-      <div>
-        <h2>vocabulary</h2>
+      <notes-outline label="vocabulary">
         <ul>
-          <li><code>Docker</code> is containerization software: it allows developers to specify the necessary OPS to run their application(s) which can then be <code>virtualized</code> or <code>emulated</code> by the host.</li>
-          <li><code>Virtualization</code> is the process of binding the underlying hosts' native capabilities to the expected interfaces specified by docker.</li>
-          <li><code>Emulation</code> is the process of booting up a small instance of the necessary interfaces.</li>
-          <li><code>image</code> is the cached and tagged set of instructions for booting some virtualized software.</li>
-          <li><code>container</code> is the built and configured instance of an image.</li>
+          <li><em>Docker</em> is containerization software: it allows developers to specify the necessary OPS to run their application(s) which can then be <em>virtualized</em> or <em>emulated</em> by the host.</li>
+          <li><em>Virtualization</em> is the process of binding the underlying hosts' native capabilities to the expected interfaces specified by docker.</li>
+          <li><em>Emulation</em> is the process of booting up a small instance of the necessary interfaces.</li>
+          <li><em>image</em> is the cached and tagged set of instructions for booting some virtualized software.</li>
+          <li><em>container</em> is the built and configured instance of an image.</li>
         </ul>
-      </div>
+      </notes-outline>
     </section>
     <section>
       <h1>helpful</h1>
-      <div>
-        <h2>get Docker disk usage</h2>
+      <notes-outline label="get Docker disk usage">
         <code class="cmd">docker run --net=host --ipc=host --uts=host --pid=host -it --security-opt=seccomp=unconfined --privileged --rm -v /:/host alpine sh -c "chroot /host df -h | grep docker"</code>
         <ul>
-          <li><code>chroot</code> sets the root directory to <code>/host</code> for the <code>df</code> command which prints disk usage in a <code>-h</code> human readable format.</li>
-          <li>Because this command is actually introspecting the host (everything docker uses, rather than a single container), the <code>--net</code>, <code>--ipc</code>, and <code>--pid</code> all get set to <code>host</code>.</li>
-          <li><code>--privileged</code> gives access to all docker devices on the host.</li>
+          <li><em>chroot</em> sets the root directory to <em>/host</em> for the <em>df</em> command which prints disk usage in a <em>-h</em> human readable format.</li>
+          <li>Because this command is actually introspecting the host (everything docker uses, rather than a single container), the <em>--net</em>, <em>--ipc</em>, and <em>--pid</em> all get set to <em>host</em>.</li>
+          <li><em>--privileged</em> gives access to all docker devices on the host.</li>
         </ul>
-      </div>
-      <div>
-        <h2>remove all stopped docker containers</h2>
+      </notes-outline>
+      <notes-outline label="remove all stopped docker containers">
         <code class="cmd">docker rm $(docker ps -qa)</code>
         <ul>
-          <li><code>ps</code> lists containers and <code>rm</code> removes containers.</li>
-          <li>Specifying the <code>-aq</code> options causes all stopped containers to be removed.</li>
+          <li><em>ps</em> lists containers and <em>rm</em> removes containers.</li>
+          <li>Specifying the <em>-aq</em> options causes all stopped containers to be removed.</li>
         </ul>
-      </div>
-      <div>
-        <h2>docker run --rm -i imega/jq -C path</h2>
-        <code>docker run --rm -i imega/jq -C path</code>
+      </notes-outline>
+      <notes-outline label="parse json">
+        <em>docker run --rm -i imega/jq -C path</em>
         <ul>
-          <li><code>jq</code> is a JSON parsing app.</li>
-          <li>The output of <code>docker inspect</code> can be piped into the above for easy querying.</li>
-          <li><code>path</code> is a dot-notation series of nested key paths to traverse the input JSON.</li>
+          <li><em>jq</em> is a JSON parsing app.</li>
+          <li>The output of <em>docker inspect</em> can be piped into the above for easy querying.</li>
+          <li><em>path</em> is a dot-notation series of nested key paths to traverse the input JSON.</li>
         </ul>
-      </div>
+      </notes-outline>
     </section>
     <section>
       <h1>inventory</h1>
-      <div>
-        <code class="cmd">docker ps -a -q</code>
+      <notes-outline>
+        <template v-slot:label>
+          <code class="cmd">docker ps -a -q</code>
+        </template>
         <ul>
-          <li><code>ps</code> lists all running docker containers.</li>
-          <li><code>-a</code> is optional and flag includes stopped containers.</li>
-          <li><code>-q</code> is optional and limits the output to only the container ids.</li>
+          <li><em>ps</em> lists all running docker containers.</li>
+          <li><em>-a</em> is optional and flag includes stopped containers.</li>
+          <li><em>-q</em> is optional and limits the output to only the container ids.</li>
         </ul>
-      </div>
-      <div>
-        <code class="cmd">docker images</code>
+      </notes-outline>
+      <notes-outline>
+        <template v-slot:label>
+          <code class="cmd">docker images</code>
+        </template>
         <ul>
-          <li><code>images</code> lists all locally available images.</li>
+          <li><em>images</em> lists all locally available images.</li>
         </ul>
-      </div>
-      <div>
-        <code class="cmd">docker volume ls</code>
+      </notes-outline>
+      <notes-outline>
+        <template v-slot:label>
+          <code class="cmd">docker volume ls</code>
+        </template>
         <ul>
-          <li><code>volume ls</code> lists all locally created volumes.</li>
+          <li><em>volume ls</em> lists all locally created volumes.</li>
         </ul>
-      </div>
+      </notes-outline>
     </section>
     <section>
       <h1>introspection</h1>
-      <div>
-        <code class="cmd">docker inspect container</code>
+      <notes-outline>
+        <template v-slot:label>
+          <code class="cmd">docker inspect container</code>
+        </template>
         <ul>
-          <li><code>inspect</code> prints a JSON blob describing low-level information about the given container.</li>
-          <li><code>container</code> may refer to either the container id or name (partial matches on id are accepted).</li>
+          <li><em>inspect</em> prints a JSON blob describing low-level information about the given container.</li>
+          <li><em>container</em> may refer to either the container id or name (partial matches on id are accepted).</li>
         </ul>
-      </div>
+      </notes-outline>
     </section>
     <section>
       <h1>cleanup</h1>
-      <div>
-        <code class="cmd">docker rm -v container</code>
+      <notes-outline>
+        <template v-slot:label>
+          <code class="cmd">docker rm -v container</code>
+        </template>
         <ul>
-          <li><code>rm</code> deletes stopped containers.</li>
-          <li><code>-v</code> is optional and deletes any volumes associated with the container.</li>
-          <li><code>container</code> can be one or more (space-delimited) container ids (partial matches are accepted).</li>
+          <li><em>rm</em> deletes stopped containers.</li>
+          <li><em>-v</em> is optional and deletes any volumes associated with the container.</li>
+          <li><em>container</em> can be one or more (space-delimited) container ids (partial matches are accepted).</li>
         </ul>
-      </div>
-      <div>
-        <code>docker rmi image:tag</code>
+      </notes-outline>
+      <notes-outline>
+        <template v-slot:label>
+          <em>docker rmi image:tag</em>
+        </template>
         <ul>
-          <li><code>rmi</code> deletes locally available images.</li>
-          <li><code>tag</code> is optional and defaults to <code>latest</code>.</li>
+          <li><em>rmi</em> deletes locally available images.</li>
+          <li><em>tag</em> is optional and defaults to <em>latest</em>.</li>
         </ul>
-      </div>
+      </notes-outline>
     </section>
     <section>
       <h1>interaction</h1>
-      <div>
-        <code class="cmd">docker run --name=name --rm -it --link=container:service --network=net -p hp:cp -v hd:cd image:tag cmd</code>
+      <notes-outline>
+        <template v-slot:label>
+          <code class="cmd">docker run --name=name --rm -it --link=container:service --network=net -p hp:cp -v hd:cd image:tag cmd</code>
+        </template>
         <ul>
-          <li><code>run</code> spawns a container running the given <code>image</code> with the specified <code>tag</code>, the <code>tag</code> defaults to <code>latest</code>.</li>
-          <li><code>--name</code> is optional and allows you to specify a custom label for the container, the default being a randomly generated name.</li>
-          <li><code>--rm</code> is optional and deletes the container when it stops.</li>
-          <li><code>-it</code> are optional and make the container interactive via a tty connection.</li>
-          <li><code>--link</code> is optional and allows you to bind a running <code>container</code> with the label <code>service</code> so this new container can interact with it.</li>
-          <li><code>--network</code> is optional and attaches the container to the specified network, auto-linking any other containers running in that network.</li>
-          <li><code>-p</code> is optional and binds a host port to a container port (specifying 0 will assign a random, available port).</li>
-          <li><code>-v</code> is optional and binds a host directory (or docker volume) to a container directory.</li>
-          <li><code>cmd</code> is optional (the image may specify a default) and will be run when the container boots.</li>
+          <li><em>run</em> spawns a container running the given <em>image</em> with the specified <em>tag</em>, the <em>tag</em> defaults to <em>latest</em>.</li>
+          <li><em>--name</em> is optional and allows you to specify a custom label for the container, the default being a randomly generated name.</li>
+          <li><em>--rm</em> is optional and deletes the container when it stops.</li>
+          <li><em>-it</em> are optional and make the container interactive via a tty connection.</li>
+          <li><em>--link</em> is optional and allows you to bind a running <em>container</em> with the label <em>service</em> so this new container can interact with it.</li>
+          <li><em>--network</em> is optional and attaches the container to the specified network, auto-linking any other containers running in that network.</li>
+          <li><em>-p</em> is optional and binds a host port to a container port (specifying 0 will assign a random, available port).</li>
+          <li><em>-v</em> is optional and binds a host directory (or docker volume) to a container directory.</li>
+          <li><em>cmd</em> is optional (the image may specify a default) and will be run when the container boots.</li>
         </ul>
-      </div>
-      <div>
-        <code class="cmd">docker commit -a author -m message container image:tag</code>
+      </notes-outline>
+      <notes-outline>
+        <template v-slot:label>
+          <code class="cmd">docker commit -a author -m message container image:tag</code>
+        </template>
         <ul>
-          <li><code>commit</code> creates an image from a run container.</li>
-          <li><code>-a</code> is optional and allows you to specify the commit's <code>author</code> in the format <code>"First_Name Last_Name &lacute;email@host.tld&racute;"</code></li>
-          <li><code>-m</code> is optional and allows you to specify a commit <code>message</code> describing what has changed.</li>
-          <li><code>container</code> references a local container id or name.</li>
-          <li><code>image</code> is the repository used to store the image and <code>tag</code> is optional, defaulting to <code>latest</code>.</li>
+          <li><em>commit</em> creates an image from a run container.</li>
+          <li><em>-a</em> is optional and allows you to specify the commit's <em>author</em> in the format <em>"First_Name Last_Name &lt;email@host.tld&gt;"</em></li>
+          <li><em>-m</em> is optional and allows you to specify a commit <em>message</em> describing what has changed.</li>
+          <li><em>container</em> references a local container id or name.</li>
+          <li><em>image</em> is the repository used to store the image and <em>tag</em> is optional, defaulting to <em>latest</em>.</li>
         </ul>
-      </div>
+      </notes-outline>
     </section>
   </notes-paper>
 </template>
 
 <script>
   import NotesPaper from '../../components/NotesPaper'
+  import NotesOutline from '../../components/NotesOutline'
 
   export default {
     components: {
-      NotesPaper
+      NotesPaper,
+      NotesOutline
     }
   }
 </script>
@@ -161,28 +174,11 @@
   $label-bg-color: rgba(255, 255, 255, 0.90);
 
   .content {
-    div {
-      border-radius: 5px;
-      box-shadow: inset 0 0 1px 0 black, 0 0 1px 0 black;
-      padding: 1rem;
-      margin-bottom: 1rem;
+    code {
+      @include highlight($code-highlight-a-color);
 
-      h2 {
-        top: -1.5rem;
-        position: relative;
-        margin-bottom: -1rem;
-        font-size: medium;
-        background-color: $label-bg-color;
-        box-shadow: 0 0 2px 2px $label-bg-color;
-        width: fit-content;
-      }
-
-      code {
-        @include highlight($code-highlight-a-color);
-
-        &.cmd {
-          @include highlight($code-highlight-b-color);
-        }
+      &.cmd {
+        @include highlight($code-highlight-b-color);
       }
     }
   }
