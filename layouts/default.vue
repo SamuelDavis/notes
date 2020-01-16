@@ -8,6 +8,9 @@
 
 <script>
   import NotesNav from '../components/NotesNav'
+  import hljs from 'highlight.js/lib/highlight'
+  import bash from 'highlight.js/lib/languages/bash'
+  import 'highlight.js/styles/github.css'
 
   export default {
     components: {
@@ -33,6 +36,14 @@
             return acc
           }, { routes: [] })
       }
+    },
+    created () {
+      hljs.registerLanguage('bash', bash)
+    },
+    mounted () {
+      document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightBlock(block)
+      })
     }
   }
 </script>
@@ -67,5 +78,11 @@
       flex: 1;
       background-color: white;
     }
+  }
+
+  pre > code {
+    padding: 0 0.5rem !important;
+    background-color: rgba(248, 248, 248, 0) !important;
+    width: fit-content !important;
   }
 </style>
