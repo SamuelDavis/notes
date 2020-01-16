@@ -10,7 +10,7 @@
   import NotesNav from '../components/NotesNav'
   import hljs from 'highlight.js/lib/highlight'
   import bash from 'highlight.js/lib/languages/bash'
-  import 'highlight.js/styles/github.css'
+  import 'highlight.js/styles/darcula.css'
 
   export default {
     components: {
@@ -80,9 +80,15 @@
     }
   }
 
-  pre > code {
-    padding: 0 0.5rem !important;
-    background-color: rgba(248, 248, 248, 0) !important;
-    width: fit-content !important;
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: match-parent;
+    width: fit-content;
+
+    > * {
+      padding: 0 3px !important;
+      border-radius: 3px;
+    }
   }
 </style>

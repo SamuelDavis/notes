@@ -1,7 +1,9 @@
 <template>
   <div class="outline-wrapper">
-    <label>{{label}}
+    <label>
+      <span>{{label}}
       <slot name="label"/>
+      </span>
     </label>
     <slot/>
   </div>
@@ -30,10 +32,15 @@
     }
 
     label {
-      position: absolute;
-      margin-top: -1.5rem;
+      position: relative;
+      top: -1.5rem;
       font-weight: bold;
+      max-width: 100%;
       @include highlight(white, 0.5rem);
+
+      > span {
+        position: relative;
+      }
 
       * {
         padding: 0;
