@@ -1,17 +1,26 @@
 <template>
-  <nav>
-    <ol>
-      <li :class="{active: path.slice(1) && $route.path.includes(path)}" :key="i" class="shadow" v-for="({path, name}, i) in routes">
-        <router-link :to="path" class="inverted-text" v-text="name"/>
-      </li>
-    </ol>
-  </nav>
+  <div class="nav-wrapper">
+    <div class="content-container shadow">
+      <notes-nav :child="child.child" :routes="child.routes" v-if="child">
+        <slot/>
+      </notes-nav>
+      <slot v-else/>
+    </div>
+    <nav class="nav-container">
+      <ol>
+        <li :class="{active: path.slice(1) && $route.path.includes(path)}" :key="i" class="shadow" v-for="({path, name}, i) in routes">
+          <router-link :to="path" class="inverted-text" v-text="name"/>
+        </li>
+      </ol>
+    </nav>
+  </div>
 </template>
 
 <script>
   export default {
     name: 'notes-nav',
     props: {
+      child: Object,
       routes: {
         type: Array,
         default () {
@@ -25,28 +34,54 @@
 </script>
 
 <style lang="scss" scoped>
-  ol {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  $activeColor: #50514F;
+  $tabColor: #247BA0;
 
-    > li {
-      writing-mode: vertical-lr;
-      margin-bottom: 0.25rem;
-      background-color: #247BA0;
-      border-top-right-radius: 5px;
-      border-bottom-right-radius: 5px;
-      width: fit-content;
+  .nav-wrapper {
+    display: flex;
+    flex-direction: row;
 
-      &.active {
-        background-color: #50514F;
+    .content-container {
+      border-radius: 0.5rem;
+      display: flex;
+      flex: 1;
+      background-color: $activeColor;
+
+      .nav-wrapper {
+        flex: 1;
+        margin-right: 0.5rem;
       }
+    }
 
-      a {
-        padding: 0.5rem;
-        display: block;
-        text-decoration: none;
-        text-transform: capitalize;
+    .nav-container {
+      margin-top: 1rem;
+
+      ol {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          writing-mode: vertical-lr;
+          background-color: $tabColor;
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+
+          &:not(:last-child) {
+            margin-bottom: 0.25rem;
+          }
+
+          &.active {
+            background-color: $activeColor;
+          }
+
+          a {
+            display: block;
+            padding: 0.5rem;
+            text-decoration: none;
+            text-transform: capitalize;
+          }
+        }
       }
     }
   }
