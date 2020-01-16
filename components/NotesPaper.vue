@@ -55,12 +55,9 @@
     .header {
       z-index: 1;
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      height: 4rem;
-      justify-content: center;
-      text-transform: uppercase;
       line-height: 2rem;
+      min-height: 4rem;
+      padding-top: 1rem;
     }
 
     .content {

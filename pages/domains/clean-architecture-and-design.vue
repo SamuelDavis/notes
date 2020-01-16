@@ -2,7 +2,7 @@
   <notes-paper>
     <template v-slot:header>
       <h1>
-        <notes-citation href="https://www.youtube.com/embed/Nsjsiz2A9mg">Robert C. Martin - Clean architecture and Design</notes-citation>
+        <notes-citation href="https://www.youtube.com/embed/Nsjsiz2A9mg">Clean Architecture and Design</notes-citation>
       </h1>
     </template>
     <section>
@@ -81,6 +81,15 @@
   .content {
     img {
       height: 36rem;
+      object-fit: contain;
+
+      @media (max-width: 800px) {
+        height: 18rem;
+      }
+
+      @media (max-width: 400px) {
+        height: 9rem;
+      }
     }
   }
 </style>
