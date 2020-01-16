@@ -39,10 +39,6 @@
       width: fit-content;
 
       &.active {
-        position: relative;
-        left: -1rem;
-        border-top-left-radius: 2px;
-        border-bottom-left-radius: 2px;
         background-color: #50514F;
       }
 

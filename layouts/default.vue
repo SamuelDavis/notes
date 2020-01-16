@@ -1,9 +1,7 @@
 <template>
   <div id="app">
-    <nuxt class="page shadow"/>
-    <div id="nav-container">
-      <notes-nav :style="{zIndex: routes.length - i}" :key="i" :routes="nav.routes" v-for="(nav, i) in routes" v-if="shouldShowNav(nav)"/>
-    </div>
+    <nuxt class="page"/>
+    <notes-nav :key="namespace" :routes="routes" class="nav" v-for="{routes, namespace} in navs" v-if="$route.path.includes(namespace)"/>
   </div>
 </template>
 
@@ -14,28 +12,19 @@
     components: {
       NotesNav
     },
-    data () {
-      const routes = [...this.$router.options.routes]
-        .reduce((acc, route) => {
-          const parts = route.path.slice(1).split('/')
-          const namespace_parts = parts.slice(0, parts.length - 1)
-          const namespace = namespace_parts.join('.')
+    computed: {
+      navs () {
+        return Object.values(this.$router.options.routes.reduce((acc, route) => {
+          const parts = route.path.split('/')
+          const namespace = parts.slice(0, parts.length - 1).join('/')
           if (!acc.hasOwnProperty(namespace)) {
-            acc[namespace] = {
-              namespace,
-              namespace_parts,
-              routes: []
-            }
+            acc[namespace] = { namespace, len: parts.length - 1, routes: [] }
           }
           acc[namespace].routes.push(route)
-          acc[namespace].routes.sort((a, b) => a.path.length - b.path.length)
           return acc
-        }, {})
-      return { routes: Object.values(routes).sort((a, b) => b.namespace_parts.length - a.namespace_parts.length) }
-    },
-    methods: {
-      shouldShowNav (group) {
-        return this.$route.path.slice(1).replace('\/', '.').includes(group.namespace)
+        }, {}))
+          .sort((a, b) => b.len - a.len)
+          .map((nav) => ({ ...nav, routes: nav.routes.sort((a, b) => a.path.length - b.path.length) }))
       }
     }
   }
