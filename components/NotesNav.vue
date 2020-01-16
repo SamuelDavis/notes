@@ -1,7 +1,7 @@
 <template>
-  <div class="nav-wrapper">
+  <div :style="{zIndex: depth}" class="nav-wrapper">
     <div class="content-container shadow">
-      <notes-nav :child="child.child" :routes="child.routes" v-if="child">
+      <notes-nav :child="child.child" :depth="depth + 1" :routes="child.routes" v-if="child">
         <slot/>
       </notes-nav>
       <slot v-else/>
@@ -20,6 +20,10 @@
   export default {
     name: 'notes-nav',
     props: {
+      depth: {
+        type: Number,
+        default: 1
+      },
       child: Object,
       routes: {
         type: Array,
@@ -60,11 +64,14 @@
 
       ol {
         list-style-type: none;
-        margin: 0;
+        margin-top: 0;
+        margin-left: 0;
+        margin-bottom: 0;
         padding: 0;
+        writing-mode: vertical-lr;
 
         li {
-          writing-mode: vertical-lr;
+          display: inline-block;
           background-color: $tabColor;
           border-top-right-radius: 5px;
           border-bottom-right-radius: 5px;
