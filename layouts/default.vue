@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <nuxt class="page shadow"/>
-    <notes-nav class="nav"/>
+    <notes-nav :child="navs.child" :routes="navs.routes" class="nav">
+      <nuxt class="page shadow"/>
+    </notes-nav>
   </div>
 </template>
 
@@ -11,6 +12,27 @@
   export default {
     components: {
       NotesNav
+    },
+    computed: {
+      navs () {
+        return [...this.$router.options.routes]
+          .sort((a, b) => a.path.length - b.path.length)
+          .reduce((acc, route) => {
+            const parts = route.path.slice(1).split('/')
+            const namespace = parts.slice(0, parts.length - 1)
+            if (!this.$route.path.includes(namespace.join('/'))) {
+              return acc
+            }
+            const seek = namespace.reduce((seek, item) => {
+              if (!seek.hasOwnProperty('child')) {
+                seek['child'] = { routes: [] }
+              }
+              return seek.child
+            }, acc)
+            seek.routes.push(route)
+            return acc
+          }, { routes: [] })
+      }
     }
   }
 </script>
@@ -23,6 +45,13 @@
     line-height: $line-height;
   }
 
+  #nav-container {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+  }
+
   .inverted-text, .inverted-text * {
     color: white;
     text-shadow: 0 0 3px black;
@@ -33,17 +62,10 @@
   }
 
   #app {
-    display: flex;
-    flex-direction: row;
-
-    > .page {
+    .page {
+      border-radius: 1rem;
       flex: 1;
-      border-radius: 5px;
-    }
-
-    > .nav {
-      margin-top: 1rem;
-      max-width: 20%;
+      background-color: white;
     }
   }
 </style>
