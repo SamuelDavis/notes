@@ -1,9 +1,8 @@
 <template>
-  <div class="outline-wrapper">
+  <div class="outline-wrapper" :style="{paddingTop: label || $slots.label ? 0 : undefined}">
     <label>
-      <span>{{label}}
+      <span v-if="label" v-text="label"/>
       <slot name="label"/>
-      </span>
     </label>
     <slot/>
   </div>
@@ -33,16 +32,13 @@
 
     label {
       position: relative;
-      top: -1.5rem;
+      top: -0.5rem;
       font-weight: bold;
       max-width: 100%;
-      @include highlight(white, 0.5rem);
-
-      > span {
-        position: relative;
-      }
+      @include highlight(white, 12px, 3px);
 
       * {
+        position: relative;
         padding: 0;
         margin: 0;
       }

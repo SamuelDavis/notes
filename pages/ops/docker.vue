@@ -18,7 +18,7 @@
         <p>Prefer <em>COPY</em>. <em>COPY</em> simply copies a file from the build context/image to the container. Docker's <em>ADD</em> command is a more robust version of <em>COPY</em> in that it supports fetching from URLs and will automatically untar compressed archives.</p>
       </notes-outline>
       <notes-outline label="mounting directories in the Windows Linux Subsystem">
-        <p>WLS mounts the Windows host to <em>/mnt</em>, eg: <em>C:\</em> is the equivalent of <em>/mnt/c/</em>. However, Docker Desktop (for Windows) expects mounts to originate with <em>/c</em>. The best solution is to leverage WLS' mount capabilities to just bind <em>/mnt/c</em> to <em>/c</em> with <pre><code class="lang-bash">sudo mkdir /c && mount --bind /mnt/c /c</code></pre>. Alternatively, you can manually, explicitly bind mount paths so that the host path begins at <em>/c</em> rather than using shortcuts like <em>pwd</em> which may originate with <em>/mnt</em>. This is caused by the fact Docker doesn't have access to the WLS filesystem, so any work you do should be in the Windows host file system available through <em>/mnt/c</em> and its sub-directories.</p>
+        <p>WLS mounts the Windows host to <em>/mnt</em>, eg: <em>C:\</em> is the equivalent of <em>/mnt/c/</em>. However, Docker Desktop (for Windows) expects mounts to originate with <em>/c</em>. The best solution is to leverage WLS' mount capabilities to just bind <em>/mnt/c</em> to <em>/c</em> with <code class="lang-bash">sudo mkdir /c && mount --bind /mnt/c /c</code>. Alternatively, you can manually, explicitly bind mount paths so that the host path begins at <em>/c</em> rather than using shortcuts like <em>pwd</em> which may originate with <em>/mnt</em>. This is caused by the fact Docker doesn't have access to the WLS filesystem, so any work you do should be in the Windows host file system available through <em>/mnt/c</em> and its sub-directories.</p>
       </notes-outline>
     </section>
     <section>
@@ -35,7 +35,7 @@
     <section>
       <h1>helpful</h1>
       <notes-outline label="get Docker disk usage">
-        <pre><code class="lang-bash">docker run --net=host --ipc=host --uts=host --pid=host -it --security-opt=seccomp=unconfined --privileged --rm -v /:/host alpine sh -c "chroot /host df -h | grep docker"</code></pre>
+        <code class="lang-bash">docker run --net=host --ipc=host --uts=host --pid=host -it --security-opt=seccomp=unconfined --privileged --rm -v /:/host alpine sh -c "chroot /host df -h | grep docker"</code>
         <ul>
           <li><em>chroot</em> sets the root directory to <em>/host</em> for the <em>df</em> command which prints disk usage in a <em>-h</em> human readable format.</li>
           <li>Because this command is actually introspecting the host (everything docker uses, rather than a single container), the <em>--net</em>, <em>--ipc</em>, and <em>--pid</em> all get set to <em>host</em>.</li>
@@ -43,14 +43,14 @@
         </ul>
       </notes-outline>
       <notes-outline label="remove all stopped docker containers">
-        <pre><code class="lang-bash">docker rm $(docker ps -qa)</code></pre>
+        <code class="lang-bash">docker rm $(docker ps -qa)</code>
         <ul>
           <li><em>ps</em> lists containers and <em>rm</em> removes containers.</li>
           <li>Specifying the <em>-aq</em> options causes all stopped containers to be removed.</li>
         </ul>
       </notes-outline>
       <notes-outline label="parse json">
-        <em>docker run --rm -i imega/jq -C path</em>
+        <code class="lang-bash/">docker run --rm -i imega/jq -C path</code>
         <ul>
           <li><em>jq</em> is a JSON parsing app.</li>
           <li>The output of <em>docker inspect</em> can be piped into the above for easy querying.</li>
@@ -62,7 +62,7 @@
       <h1>inventory</h1>
       <notes-outline>
         <template v-slot:label>
-          <pre><code class="lang-bash">docker ps -a -q</code></pre>
+          <code class="lang-bash">docker ps -a -q</code>
         </template>
         <ul>
           <li><em>ps</em> lists all running docker containers.</li>
@@ -72,7 +72,7 @@
       </notes-outline>
       <notes-outline>
         <template v-slot:label>
-          <pre><code class="lang-bash">docker images</code></pre>
+          <code class="lang-bash">docker images</code>
         </template>
         <ul>
           <li><em>images</em> lists all locally available images.</li>
@@ -80,7 +80,7 @@
       </notes-outline>
       <notes-outline>
         <template v-slot:label>
-          <pre><code class="lang-bash">docker volume ls</code></pre>
+          <code class="lang-bash">docker volume ls</code>
         </template>
         <ul>
           <li><em>volume ls</em> lists all locally created volumes.</li>
@@ -91,7 +91,7 @@
       <h1>introspection</h1>
       <notes-outline>
         <template v-slot:label>
-          <pre><code class="lang-bash">docker inspect container</code></pre>
+          <code class="lang-bash">docker inspect container</code>
         </template>
         <ul>
           <li><em>inspect</em> prints a JSON blob describing low-level information about the given container.</li>
@@ -103,7 +103,7 @@
       <h1>cleanup</h1>
       <notes-outline>
         <template v-slot:label>
-          <pre><code class="lang-bash">docker rm -v container</code></pre>
+          <code class="lang-bash">docker rm -v container</code>
         </template>
         <ul>
           <li><em>rm</em> deletes stopped containers.</li>
@@ -113,7 +113,7 @@
       </notes-outline>
       <notes-outline>
         <template v-slot:label>
-          <em>docker rmi image:tag</em>
+          <code class="lang-bash">docker rmi image:tag</code>
         </template>
         <ul>
           <li><em>rmi</em> deletes locally available images.</li>
@@ -125,7 +125,7 @@
       <h1>interaction</h1>
       <notes-outline>
         <template v-slot:label>
-          <pre><code class="lang-bash">docker run --name=name --rm -it --link=container:service --network=net -p hp:cp -v hd:cd image:tag cmd</code></pre>
+          <code class="lang-bash">docker run --name=name --rm -it --link=container:service --network=net -p hp:cp -v hd:cd image:tag cmd</code>
         </template>
         <ul>
           <li><em>run</em> spawns a container running the given <em>image</em> with the specified <em>tag</em>, the <em>tag</em> defaults to <em>latest</em>.</li>
@@ -141,7 +141,7 @@
       </notes-outline>
       <notes-outline>
         <template v-slot:label>
-          <pre><code class="lang-bash">docker commit -a author -m message container image:tag</code></pre>
+          <code class="lang-bash">docker commit -a author -m message container image:tag</code>
         </template>
         <ul>
           <li><em>commit</em> creates an image from a run container.</li>

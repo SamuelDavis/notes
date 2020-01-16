@@ -41,8 +41,10 @@
       hljs.registerLanguage('bash', bash)
     },
     mounted () {
-      document.querySelectorAll('pre code').forEach((block) => {
-        hljs.highlightBlock(block)
+      this.$nextTick(() => {
+        document.querySelectorAll('code').forEach((block) => {
+          hljs.highlightBlock(block)
+        })
       })
     }
   }
@@ -80,15 +82,9 @@
     }
   }
 
-  pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    text-align: match-parent;
+  .hljs {
+    padding: 0 3px !important;
+    border-radius: 3px;
     width: fit-content;
-
-    > * {
-      padding: 0 3px !important;
-      border-radius: 3px;
-    }
   }
 </style>
