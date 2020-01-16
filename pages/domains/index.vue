@@ -91,5 +91,9 @@
         @include highlight($code-highlight-b-color);
       }
     }
+
+    iframe {
+      max-width: 100%;
+    }
   }
 </style>
