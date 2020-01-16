@@ -16,12 +16,12 @@
         <h3>
           <notes-citation href="https://gist.github.com/brablc/f48fef6336765212360ed3de66034b90">Dnsmasq for OSX</notes-citation>
         </h3>
-        <code class="lang-bash">brew install dnsmasq; #install dnsmasq
+        <pre><code class="lang-bash">brew install dnsmasq; #install dnsmasq
 mkdir -pv $(brew --prefix)/etc/; #create config directory
 echo 'address=/.test/127.0.0.1' >> $(brew --prefix)/etc/dnsmasq.conf; #route *.test to localhost
 sudo brew services start dnsmasq; #autostart dnsmasq
 sudo mkdir -v /etc/resolver; #create resolver dir
-sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/test'; #add nameserver to resolvers</code>
+sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/test'; #add nameserver to resolvers</code></pre>
       </div>
     </section>
   </notes-paper>
