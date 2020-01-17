@@ -74,6 +74,8 @@
       h1, h2, h3 {
         text-transform: capitalize;
         margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
       }
 
       sup, sub, small {

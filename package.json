@@ -12,6 +12,7 @@
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
+    "highlight.js": "^9.17.1",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
