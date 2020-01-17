@@ -73,17 +73,109 @@ npm run dev</code></pre>
         </ul>
       </notes-outline>
     </section>
+    <section>
+      <h1>WordPress with HTTPS Example</h1>
+      <notes-outline>
+        <template v-slot:label>
+          <notes-citation href="https://gist.github.com/SamuelDavis/706cb22355ff92ff10cf5817ca1dcc57">docker-compose.yml</notes-citation>
+        </template>
+      <pre><code class="lang-yaml">version: '3'
+
+networks:
+  reverse-proxy: {}
+  wp-test: {}
+
+volumes:
+  wp-test-db: {}
+
+services:
+  reverse-proxy:
+    image: traefik:v2.0
+    restart: always
+    ports:
+      - "8080:8080"
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./certs:/certs # directory to store letsEncrypt certs
+    networks:
+      - reverse-proxy
+    command:
+      # API SETTINGS
+      - --api.insecure=true # enable the (insecure) API
+      - --api.dashboard=true # enable the dashboard
+      # LOG SETTINGS
+      - --log.level=DEBUG # most extensive logging
+      # PROVIDER SETTINGS
+      - --providers.docker # use docker (as opposed to kubernetes, etc.)
+      - --providers.docker.exposedByDefault=false # ignore containers unless they're specially labled
+      - --providers.docker.network=reverse-proxy # docker network to look for containers in
+      # ENTRYPOINTS
+      - --entrypoints.insecure.address=:80 # listen on port 80
+      - --entrypoints.secure.address=:443 # listen on port 443
+      # CERTIFICATES
+      # WARNING: LETS ENCRYPT CAN ONLY VALIDATE ICANN TLDS, THUS *.test WILL ERROR & BE INVALID
+      - --certificatesResolvers.le.acme.email=samueljakdavis@gmail.com
+      - --certificatesResolvers.le.acme.storage=/certs/acme.json
+      - --certificatesResolvers.le.acme.httpChallenge.entryPoint=insecure
+    labels:
+      # PRETTY URL FOR TRAEFIK DASHBOARD
+      - "traefik.enable=true" # enable host routing for dashboard
+      - "traefik.http.routers.traefik.rule=Host(\"traefik.test\")" # set url for dashboard
+      - "traefik.http.routers.traefik.service=api@internal" # point the router at the dashboard backend, not frontend
+      # HTTP > HTTPS REDIRECT MIDDLEWARE
+      - "traefik.http.middlewares.secure-redirect.redirectscheme.scheme=https"
+  wp-test:
+    image: wordpress:latest
+    restart: always
+    depends_on:
+      - wp-test-db
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - reverse-proxy # traefik needs to be able to send requests to this container
+      - wp-test # this container, but not traefik, needs to be able to talk to the db
+    environment:
+      WORDPRESS_DB_HOST: wp-test-db
+      WORDPRESS_DB_USER: wp-test-user
+      WORDPRESS_DB_PASSWORD: wp-test-pass
+      WORDPRESS_DB_NAME: wp-test-db
+    labels:
+      - "traefik.enable=true" # traefik should handle this container
+      - "traefik.http.routers.insecure.rule=Host(\"wp.test\", \"www.wp.test\")" # traefik should handle this container
+      - "traefik.http.routers.insecure.entrypoints=insecure" # listen for HTTP
+      - "traefik.http.routers.insecure.middlewares=secure-redirect" # redirect to https
+      - "traefik.http.routers.secure.rule=Host(\"wp.test\", \"www.wp.test\")" # traefik should handle this container
+      - "traefik.http.routers.secure.entrypoints=secure" # listen for HTTPS
+      - "traefik.http.routers.secure.tls.certResolver=le" # use letsEncrypt to certify
+  wp-test-db:
+    image: mysql:5.7
+    restart: always
+    networks:
+      - wp-test # this container can talk to the wp-test container, but is secure from traefik traffic
+    volumes:
+      - wp-test-db:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: wp-test-db
+      MYSQL_USER: wp-test-user
+      MYSQL_PASSWORD: wp-test-pass
+      MYSQL_ROOT_PASSWORD: root</code></pre>
+      </notes-outline>
+    </section>
   </notes-paper>
 </template>
 
 <script>
   import NotesPaper from '../../components/NotesPaper'
   import NotesOutline from '../../components/NotesOutline'
+  import NotesCitation from '../../components/NotesCitation'
 
   export default {
     components: {
       NotesPaper,
-      NotesOutline
+      NotesOutline,
+      NotesCitation
     }
   }
 </script>
