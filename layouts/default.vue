@@ -87,4 +87,10 @@
     border-radius: 3px;
     width: fit-content;
   }
+
+  p {
+    code {
+      display: inline !important;
+    }
+  }
 </style>

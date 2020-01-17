@@ -9,7 +9,7 @@
         <template v-slot:label>
           <em>ps</em> vs <em>ls</em>
         </template>
-        <p><em>ps</em> stands for <i>process status</i> and <em>ls</em> is just the commonplace, Unix <i>list</i>. This is why it suddenly makes sense for <code class="cmd">docker network ls</code>, but not <i>ps</i> - the networks aren't processes that need statuses; they're just labels.</p>
+        <p><em>ps</em> stands for <i>process status</i> and <em>ls</em> is just the commonplace, Unix <i>list</i>. This is why it suddenly makes sense for <code class="lang-bash">docker network ls</code>, but not <i>ps</i> - the networks aren't processes that need statuses; they're just labels.</p>
       </notes-outline>
       <notes-outline label="listening for HTTP requests in a docker container">
         <p>If listening for requests using PHP or node, be sure to specify the host as <em>0.0.0.0</em> rather than <em>localhost</em>. Running a PHP or node server listening on <em>localhost:8080</em>, for example, will only accept requests originating from within the Docker container itself. <em>0.0.0.0:8080</em> would accept a request from anywhere on port <em>8080</em></p>
