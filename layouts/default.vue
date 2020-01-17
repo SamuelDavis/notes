@@ -10,7 +10,8 @@
   import NotesNav from '../components/NotesNav'
   import hljs from 'highlight.js/lib/highlight'
   import bash from 'highlight.js/lib/languages/bash'
-  import 'highlight.js/styles/darcula.css'
+  import yaml from 'highlight.js/lib/languages/yaml'
+  import 'highlight.js/styles/atom-one-dark-reasonable.css'
 
   export default {
     components: {
@@ -38,7 +39,8 @@
       }
     },
     created () {
-      hljs.registerLanguage('bash', bash)
+      const langs = { bash, yaml }
+      Object.keys(langs).forEach((key) => hljs.registerLanguage(key, langs[key]))
     },
     mounted () {
       this.$nextTick(() => {
@@ -86,6 +88,10 @@
     padding: 0 3px !important;
     border-radius: 3px;
     width: fit-content;
+  }
+
+  pre .hljs {
+    width: inherit;
   }
 
   p {
