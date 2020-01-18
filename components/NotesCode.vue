@@ -30,6 +30,7 @@
     padding: 0 3px !important;
     border-radius: 3px;
     width: fit-content;
+    overflow-y: hidden;
   }
 
   pre .hljs {
