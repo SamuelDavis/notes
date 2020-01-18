@@ -62,7 +62,7 @@
 
     .content {
       flex: 1;
-      padding: 0 $rule-width 0 $rule-size;
+      padding: 0 $rule-margin 0 $rule-size;
       background-image: repeating-linear-gradient(transparent 0px, transparent calc(1rem - 1px), $line-color 1rem);
 
       section, section > div {
