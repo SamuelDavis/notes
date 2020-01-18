@@ -42,9 +42,9 @@
       const langs = { bash, yaml }
       Object.keys(langs).forEach((key) => hljs.registerLanguage(key, langs[key]))
     },
-    mounted () {
+    updated () {
       this.$nextTick(() => {
-        document.querySelectorAll('code').forEach((block) => {
+        document.querySelectorAll('code:not(.hljs)').forEach((block) => {
           hljs.highlightBlock(block)
         })
       })
