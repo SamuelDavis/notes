@@ -9,7 +9,7 @@
         <template v-slot:label>
           <em>ps</em> vs <em>ls</em>
         </template>
-        <p><em>ps</em> stands for <i>process status</i> and <em>ls</em> is just the commonplace, Unix <i>list</i>. This is why it suddenly makes sense for <code class="lang-bash">docker network ls</code>, but not <i>ps</i> - the networks aren't processes that need statuses; they're just labels.</p>
+        <p><em>ps</em> stands for <i>process status</i> and <em>ls</em> is just the commonplace, Unix <i>list</i>. This is why it suddenly makes sense for <notes-code syntax="bash">docker network ls</notes-code>, but not <i>ps</i> - the networks aren't processes that need statuses; they're just labels.</p>
       </notes-outline>
       <notes-outline label="listening for HTTP requests in a docker container">
         <p>If listening for requests using PHP or node, be sure to specify the host as <em>0.0.0.0</em> rather than <em>localhost</em>. Running a PHP or node server listening on <em>localhost:8080</em>, for example, will only accept requests originating from within the Docker container itself. <em>0.0.0.0:8080</em> would accept a request from anywhere on port <em>8080</em></p>
@@ -24,7 +24,7 @@
         <p>Prefer <em>COPY</em>. <em>COPY</em> simply copies a file from the build context/image to the container. Docker's <em>ADD</em> command is a more robust version of <em>COPY</em> in that it supports fetching from URLs and will automatically untar compressed archives.</p>
       </notes-outline>
       <notes-outline label="mounting directories in the Windows Linux Subsystem">
-        <p>WLS mounts the Windows host to <em>/mnt</em>, eg: <em>C:\</em> is the equivalent of <em>/mnt/c/</em>. However, Docker Desktop (for Windows) expects mounts to originate with <em>/c</em>. The best solution is to leverage WLS' mount capabilities to just bind <em>/mnt/c</em> to <em>/c</em> with <code class="lang-bash">sudo mkdir /c && mount --bind /mnt/c /c</code>. Alternatively, you can manually, explicitly bind mount paths so that the host path begins at <em>/c</em> rather than using shortcuts like <em>pwd</em> which may originate with <em>/mnt</em>. This is caused by the fact Docker doesn't have access to the WLS filesystem, so any work you do should be in the Windows host file system available through <em>/mnt/c</em> and its sub-directories.</p>
+        <p>WLS mounts the Windows host to <em>/mnt</em>, eg: <em>C:\</em> is the equivalent of <em>/mnt/c/</em>. However, Docker Desktop (for Windows) expects mounts to originate with <em>/c</em>. The best solution is to leverage WLS' mount capabilities to just bind <em>/mnt/c</em> to <em>/c</em> with <notes-code syntax="bash">sudo mkdir /c && mount --bind /mnt/c /c</notes-code>. Alternatively, you can manually, explicitly bind mount paths so that the host path begins at <em>/c</em> rather than using shortcuts like <em>pwd</em> which may originate with <em>/mnt</em>. This is caused by the fact Docker doesn't have access to the WLS filesystem, so any work you do should be in the Windows host file system available through <em>/mnt/c</em> and its sub-directories.</p>
       </notes-outline>
     </section>
     <section>
@@ -41,7 +41,7 @@
     <section>
       <h1>helpful</h1>
       <notes-outline label="get Docker disk usage">
-        <code class="lang-bash">docker run --net=host --ipc=host --uts=host --pid=host -it --security-opt=seccomp=unconfined --privileged --rm -v /:/host alpine sh -c "chroot /host df -h | grep docker"</code>
+        <notes-code syntax="bash">docker run --net=host --ipc=host --uts=host --pid=host -it --security-opt=seccomp=unconfined --privileged --rm -v /:/host alpine sh -c "chroot /host df -h | grep docker"</notes-code>
         <ul>
           <li><em>chroot</em> sets the root directory to <em>/host</em> for the <em>df</em> command which prints disk usage in a <em>-h</em> human readable format.</li>
           <li>Because this command is actually introspecting the host (everything docker uses, rather than a single container), the <em>--net</em>, <em>--ipc</em>, and <em>--pid</em> all get set to <em>host</em>.</li>
@@ -49,14 +49,14 @@
         </ul>
       </notes-outline>
       <notes-outline label="remove all stopped docker containers">
-        <code class="lang-bash">docker rm $(docker ps -qa)</code>
+        <notes-code syntax="bash">docker rm $(docker ps -qa)</notes-code>
         <ul>
           <li><em>ps</em> lists containers and <em>rm</em> removes containers.</li>
           <li>Specifying the <em>-aq</em> options causes all stopped containers to be removed.</li>
         </ul>
       </notes-outline>
       <notes-outline label="parse json">
-        <code class="lang-bash/">docker run --rm -i imega/jq -C path</code>
+        <notes-code syntax="bash">docker run --rm -i imega/jq -C path</notes-code>
         <ul>
           <li><em>jq</em> is a JSON parsing app.</li>
           <li>The output of <em>docker inspect</em> can be piped into the above for easy querying.</li>
@@ -68,7 +68,7 @@
       <h1>inventory</h1>
       <notes-outline>
         <template v-slot:label>
-          <code class="lang-bash">docker ps -a -q</code>
+          <notes-code syntax="bash">docker ps -a -q</notes-code>
         </template>
         <ul>
           <li><em>ps</em> lists all running docker containers.</li>
@@ -78,7 +78,7 @@
       </notes-outline>
       <notes-outline>
         <template v-slot:label>
-          <code class="lang-bash">docker images</code>
+          <notes-code syntax="bash">docker images</notes-code>
         </template>
         <ul>
           <li><em>images</em> lists all locally available images.</li>
@@ -86,7 +86,7 @@
       </notes-outline>
       <notes-outline>
         <template v-slot:label>
-          <code class="lang-bash">docker volume ls</code>
+          <notes-code syntax="bash">docker volume ls</notes-code>
         </template>
         <ul>
           <li><em>volume ls</em> lists all locally created volumes.</li>
@@ -97,7 +97,7 @@
       <h1>introspection</h1>
       <notes-outline>
         <template v-slot:label>
-          <code class="lang-bash">docker inspect container</code>
+          <notes-code syntax="bash">docker inspect container</notes-code>
         </template>
         <ul>
           <li><em>inspect</em> prints a JSON blob describing low-level information about the given container.</li>
@@ -109,7 +109,7 @@
       <h1>cleanup</h1>
       <notes-outline>
         <template v-slot:label>
-          <code class="lang-bash">docker rm -v container</code>
+          <notes-code syntax="bash">docker rm -v container</notes-code>
         </template>
         <ul>
           <li><em>rm</em> deletes stopped containers.</li>
@@ -119,7 +119,7 @@
       </notes-outline>
       <notes-outline>
         <template v-slot:label>
-          <code class="lang-bash">docker rmi image:tag</code>
+          <notes-code syntax="bash">docker rmi image:tag</notes-code>
         </template>
         <ul>
           <li><em>rmi</em> deletes locally available images.</li>
@@ -131,7 +131,7 @@
       <h1>interaction</h1>
       <notes-outline>
         <template v-slot:label>
-          <code class="lang-bash">docker run --name=name --rm -it --link=container:service --network=net -p hp:cp -v hd:cd image:tag cmd</code>
+          <notes-code syntax="bash">docker run --name=name --rm -it --link=container:service --network=net -p hp:cp -v hd:cd image:tag cmd</notes-code>
         </template>
         <ul>
           <li><em>run</em> spawns a container running the given <em>image</em> with the specified <em>tag</em>, the <em>tag</em> defaults to <em>latest</em>.</li>
@@ -147,7 +147,7 @@
       </notes-outline>
       <notes-outline>
         <template v-slot:label>
-          <code class="lang-bash">docker commit -a author -m message container image:tag</code>
+          <notes-code syntax="bash">docker commit -a author -m message container image:tag</notes-code>
         </template>
         <ul>
           <li><em>commit</em> creates an image from a run container.</li>
@@ -164,11 +164,13 @@
 <script>
   import NotesPaper from '../../components/NotesPaper'
   import NotesOutline from '../../components/NotesOutline'
+  import NotesCode from '../../components/NotesCode'
 
   export default {
     components: {
       NotesPaper,
-      NotesOutline
+      NotesOutline,
+      NotesCode
     }
   }
 </script>

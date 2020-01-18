@@ -8,10 +8,6 @@
 
 <script>
   import NotesNav from '../components/NotesNav'
-  import hljs from 'highlight.js/lib/highlight'
-  import bash from 'highlight.js/lib/languages/bash'
-  import yaml from 'highlight.js/lib/languages/yaml'
-  import 'highlight.js/styles/atom-one-dark-reasonable.css'
 
   export default {
     components: {
@@ -37,17 +33,6 @@
             return acc
           }, { routes: [] })
       }
-    },
-    created () {
-      const langs = { bash, yaml }
-      Object.keys(langs).forEach((key) => hljs.registerLanguage(key, langs[key]))
-    },
-    mounted () {
-      this.$nextTick(() => {
-        document.querySelectorAll('code').forEach((block) => {
-          hljs.highlightBlock(block)
-        })
-      })
     }
   }
 </script>
@@ -81,22 +66,6 @@
       border-radius: 1rem;
       flex: 1;
       background-color: white;
-    }
-  }
-
-  .hljs {
-    padding: 0 3px !important;
-    border-radius: 3px;
-    width: fit-content;
-  }
-
-  pre .hljs {
-    width: inherit;
-  }
-
-  p {
-    code {
-      display: inline !important;
     }
   }
 </style>

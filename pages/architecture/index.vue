@@ -39,7 +39,7 @@
       <p>If you have a <i>cross-cutting concern</i>, eg: if you need to rely on some domain outside the one you're working on, then why not use an interface? If you code to an interface, you can then use dependency-injection to fulfill that interfaces' requirements from your framework.</p>
     </section>
     <section>
-      <h1>Instead of <code class="cmd">composer create-project laravel/laravel my-app</code>...</h1>
+      <h1>Instead of <notes-code syntax="bash">composer create-project laravel/laravel my-app</notes-code>...</h1>
       <ol>
         <li>Create a brand new, empty composer project.</li>
         <li>Create a <code>src/</code> directory at the top-level which is auto-loaded with <code>psr-4</code> into some meaningful namespace.</li>
@@ -61,11 +61,13 @@
 <script>
   import NotesPaper from '../../components/NotesPaper'
   import NotesQuote from '../../components/NotesQuote'
+  import NotesCode from '../../components/NotesCode'
 
   export default {
     components: {
       NotesPaper,
-      NotesQuote
+      NotesQuote,
+      NotesCode
     },
     data () {
       return {
@@ -83,12 +85,8 @@
   @import "../../assets/highlight";
 
   .content {
-    code {
+    code:not(.hljs) {
       @include highlight($code-highlight-a-color);
-
-      &.cmd {
-        @include highlight($code-highlight-b-color);
-      }
     }
 
     iframe {
