@@ -73,7 +73,7 @@
     </section>
     <section>
       <h3>highlighted code in header</h3>
-      <h1>Some code:
+      <h1>Code in headers will overflow:
         <notes-code syntax="javascript">window.console.log("Lorem ipsum dolor sit amet.")</notes-code>
       </h1>
     </section>
