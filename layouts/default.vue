@@ -55,6 +55,10 @@
     img {
       max-width: 100%;
     }
+
+    * {
+      min-width: min-content;
+    }
   }
 
   #app {

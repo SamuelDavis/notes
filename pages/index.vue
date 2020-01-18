@@ -34,11 +34,16 @@
 
 <style lang="scss" scoped>
   #cover {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+
     .content {
       font-family: "Times New Roman", monospace;
       color: white;
       text-shadow: 0 0 3px black;
-      margin: 15% 25% 30%;
       padding: 1rem;
       border: 1px inset white;
       font-size: 2rem;
