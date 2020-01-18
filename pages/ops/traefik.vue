@@ -80,6 +80,7 @@ npm run dev</notes-code></pre>
           <notes-citation href="https://gist.github.com/SamuelDavis/706cb22355ff92ff10cf5817ca1dcc57">docker-compose.yml</notes-citation>
         </template>
         <pre><notes-code syntax="yaml">version: '3'
+
 networks:
   reverse-proxy: {}
   wp-test: {}
@@ -113,11 +114,11 @@ services:
       # ENTRYPOINTS
       - --entrypoints.insecure.address=:80 # listen on port 80
       - --entrypoints.secure.address=:443 # listen on port 443
-      # CERTIFICATES
+      # AUTOMAGICALLY GENERATE LETSENCRYPT CERTIFICATES
       # WARNING: LETS ENCRYPT CAN ONLY VALIDATE ICANN TLDS, THUS *.test WILL ERROR & BE INVALID
-      - --certificatesResolvers.le.acme.email=samueljakdavis@gmail.com
-      - --certificatesResolvers.le.acme.storage=/certs/acme.json
-      - --certificatesResolvers.le.acme.httpChallenge.entryPoint=insecure
+      # - --certificatesResolvers.le.acme.email=example@gmail.com
+      # - --certificatesResolvers.le.acme.storage=/certs/acme.json
+      # - --certificatesResolvers.le.acme.httpChallenge.entryPoint=insecure
     labels:
       # PRETTY URL FOR TRAEFIK DASHBOARD
       - "traefik.enable=true" # enable host routing for dashboard
@@ -125,6 +126,9 @@ services:
       - "traefik.http.routers.traefik.service=api@internal" # point the router at the dashboard backend, not frontend
       # HTTP > HTTPS REDIRECT MIDDLEWARE
       - "traefik.http.middlewares.secure-redirect.redirectscheme.scheme=https"
+      # PROVIDED OWN CERTIFICATES
+      # - "traefik.https.routers.secure.tls.certificates.certFile=\"/certs/test.crt\"" # specify own cert
+      # - "traefik.https.routers.secure.tls.certificates.keyFile=\"/certs/test.key\"" #specify own key
   wp-test:
     image: wordpress:latest
     restart: always
@@ -145,9 +149,9 @@ services:
       - "traefik.http.routers.insecure.rule=Host(\"wp.test\", \"www.wp.test\")" # traefik should handle this container
       - "traefik.http.routers.insecure.entrypoints=insecure" # listen for HTTP
       - "traefik.http.routers.insecure.middlewares=secure-redirect" # redirect to https
-      - "traefik.http.routers.secure.rule=Host(\"wp.test\", \"www.wp.test\")" # traefik should handle this container
-      - "traefik.http.routers.secure.entrypoints=secure" # listen for HTTPS
-      - "traefik.http.routers.secure.tls.certResolver=le" # use letsEncrypt to certify
+      - "traefik.https.routers.secure.rule=Host(\"wp.test\", \"www.wp.test\")" # traefik should handle this container
+      - "traefik.https.routers.secure.entrypoints=secure" # listen for HTTPS
+      # - "traefik.https.routers.secure.tls.certResolver=le" # use letsEncrypt to certify
   wp-test-db:
     image: mysql:5.7
     restart: always
