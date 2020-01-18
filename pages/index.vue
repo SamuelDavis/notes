@@ -46,8 +46,13 @@
       text-shadow: 0 0 3px black;
       padding: 1rem;
       border: 1px inset white;
-      font-size: 2rem;
-      line-height: 2rem;
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+
+      @media (min-width: 450px) {
+        font-size: 2rem;
+        line-height: 2rem;
+      }
 
       * {
         display: block;

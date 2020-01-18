@@ -56,7 +56,7 @@
       max-width: 100%;
     }
 
-    * {
+    *:not(img) {
       min-width: min-content;
     }
   }
