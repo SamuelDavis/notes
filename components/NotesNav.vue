@@ -1,14 +1,14 @@
 <template>
-  <div :style="{zIndex: depth}" class="nav-wrapper">
-    <div class="content-container shadow">
+  <div class="notes-nav-wrapper">
+    <div :class="{active}" class="notes-nav-content">
       <notes-nav :child="child.child" :depth="depth + 1" :routes="child.routes" v-if="child">
         <slot/>
       </notes-nav>
       <slot v-else/>
     </div>
-    <nav class="nav-container">
+    <nav :style="{zIndex: depth}" class="notes-nav-items">
       <ol>
-        <li :class="{active}" :key="i" class="shadow" v-for="({path, name, active}, i) in navItems">
+        <li :class="{active}" :key="i" v-for="({path, name, active}, i) in navItems">
           <router-link :to="path" class="inverted-text" v-text="name"/>
         </li>
       </ol>
@@ -37,10 +37,13 @@
       }
     },
     computed: {
-      navItems() {
+      active () {
+        return this.navItems.reduce((acc, item) => acc || item.active, false)
+      },
+      navItems () {
         return this.routes.map((route) => {
           return {
-            active: this.$route.path === route.path || (route.path !== "/" && this.$route.path.includes(route.path)),
+            active: this.$route.path === route.path || (route.path !== '/' && this.$route.path.includes(route.path)),
             path: route.path,
             name: route.name.split('-').slice(this.depth - 1).join('-'),
           }
@@ -52,55 +55,50 @@
 
 <style lang="scss" scoped>
   $activeColor: #50514F;
-  $tabColor: #247BA0;
+  $inactiveColor: #247BA0;
 
-  .nav-wrapper {
+  .notes-nav-wrapper {
     display: flex;
     flex-direction: row;
+    min-height: 100%;
 
-    .content-container {
-      border-radius: 0.5rem;
-      display: flex;
+    .notes-nav-content {
       flex: 1;
+      min-width: 0;
       background-color: $activeColor;
+      border-radius: 8px;
 
-      .nav-wrapper {
-        flex: 1;
-        margin-right: 0.5rem;
+      &.active {
+        padding-right: 0.25rem;
       }
     }
 
-    .nav-container {
-      margin-top: 1rem;
+    .notes-nav-items ol {
+      list-style-type: none;
+      writing-mode: vertical-lr;
+      margin-top: 0;
+      margin-left: 0;
 
-      ol {
-        list-style-type: none;
-        margin-top: 0;
-        margin-left: 0;
-        margin-bottom: 0;
-        padding: 0;
-        writing-mode: vertical-lr;
+      li {
+        display: inline-block;
+        background-color: $inactiveColor;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding: 0.25rem;
 
-        li {
-          display: inline-block;
-          background-color: $tabColor;
-          border-top-right-radius: 5px;
-          border-bottom-right-radius: 5px;
+        &:not(:last-child) {
+          margin-bottom: 1rem;
+        }
 
-          &:not(:last-child) {
-            margin-bottom: 0.25rem;
-          }
+        &.active {
+          background-color: $activeColor
+        }
 
-          &.active {
-            background-color: $activeColor;
-          }
-
-          a {
-            display: block;
-            padding: 0.5rem;
-            text-decoration: none;
-            text-transform: capitalize;
-          }
+        a {
+          text-transform: capitalize;
+          text-decoration: none;
+          color: white;
+          text-shadow: 0 0 2px black;
         }
       }
     }

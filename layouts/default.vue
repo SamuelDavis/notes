@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <notes-nav :child="navs.child" :routes="navs.routes" class="nav">
-      <nuxt class="page shadow"/>
+    <notes-nav :child="navs.child" :routes="navs.routes" class="app-nav">
+      <nuxt :class="{index: $route.path==='/'}" class="app-content"/>
     </notes-nav>
   </div>
 </template>
@@ -43,29 +43,32 @@
   html {
     font-size: $line-height;
     line-height: $line-height;
-  }
 
-  #nav-container {
-    position: absolute;
-    right: 0;
-    display: flex;
-    flex-direction: row;
-  }
+    h1 {
+      line-height: 2rem;
+    }
 
-  .inverted-text, .inverted-text * {
-    color: white;
-    text-shadow: 0 0 3px black;
-  }
+    a {
+      color: inherit;
+    }
 
-  .shadow {
-    box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.25);
+    img {
+      max-width: 100%;
+    }
   }
 
   #app {
-    .page {
-      border-radius: 1rem;
+    font-family: monospace;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    .app-nav {
       flex: 1;
-      background-color: white;
+    }
+
+    .app-content:not(.index), .notes-nav-content, .notes-nav-items li {
+      box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.25);
     }
   }
 </style>

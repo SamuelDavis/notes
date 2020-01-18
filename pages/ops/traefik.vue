@@ -1,7 +1,7 @@
 <template>
   <notes-paper>
     <template v-slot:header>
-      <h1><a href="https://docs.traefik.io/" target="_blank">Traefik</a><small>(v2)</small></h1>
+      <h1><a href="https://docs.traefik.io/" target="_blank">Traefik</a> <small>(v2)</small></h1>
       <h3>An HTTP Reverse-Proxy</h3>
     </template>
     <section>
@@ -35,7 +35,8 @@
     <section>
       <h1>Quick &amp; Dirty Nuxt-Development Example</h1>
       <notes-outline label="Boot Traefik">
-        <pre><notes-code syntax="bash">docker run --rm \
+        <pre><notes-code syntax="bash">
+docker run --rm \
 --net=reverse-proxy \
 --name=reverse-proxy \
 -p 80:80 -p 8080:8080 \
@@ -43,7 +44,8 @@
 traefik:v2.0 \
 --log.level=DEBUG \
 --api.insecure=true \
---providers.docker</notes-code></pre>
+--providers.docker
+</notes-code></pre>
         <ul>
           <li><em>--net=reverse-proxy</em> specifies that docker should add the traefik container to the network named <em>reverse-proxy</em>. All the containers traefik should be routing to will also be placed in this network.</li>
           <li><em>--name=reverse-proxy</em> just specifies that the traefik container should be accessible via the custom name <em>reverse-proxy</em>.</li>
@@ -56,13 +58,15 @@ traefik:v2.0 \
         </ul>
       </notes-outline>
       <notes-outline label="Boot Nuxt">
-        <pre><notes-code syntax="bash">docker run --rm \
+        <pre><notes-code syntax="bash">
+docker run --rm \
 --expose=3000 \
 --network=reverse-proxy \
 --label="traefik.http.routers.nuxt.rule=Host(\"nuxt.test\")" \
 -v $(pwd):/code -w /code \
 samueldavis/vue:latest \
-npm run dev</notes-code></pre>
+npm run dev
+</notes-code></pre>
         <ul>
           <li><em>--expose=3000</em> the Nuxt development server listens on port 3000 by default and by explicitly exposing only one port traefik can dynamically infer it should be forwarding its <em>port 80</em> traffic to <em>port 3000</em> on the nuxt container.</li>
           <li><em>--network=reverse-proxy</em> tells docker to put the nuxt container in the same network as traefik so that traefik can listen to events and configuration provided by the nuxt container.</li>
@@ -74,12 +78,11 @@ npm run dev</notes-code></pre>
       </notes-outline>
     </section>
     <section>
-      <h1>WordPress with HTTPS Example</h1>
-      <notes-outline>
-        <template v-slot:label>
-          <notes-citation href="https://gist.github.com/SamuelDavis/706cb22355ff92ff10cf5817ca1dcc57">docker-compose.yml</notes-citation>
-        </template>
-        <pre><notes-code syntax="yaml">version: '3'
+      <h1>
+        <a href="https://gist.github.com/SamuelDavis/706cb22355ff92ff10cf5817ca1dcc57" target="_blank">WordPress with HTTPS Example</a>
+      </h1>
+      <pre><notes-code syntax="yaml">
+version: '3'
 
 networks:
   reverse-proxy: {}
@@ -163,8 +166,8 @@ services:
       MYSQL_DATABASE: wp-test-db
       MYSQL_USER: wp-test-user
       MYSQL_PASSWORD: wp-test-pass
-      MYSQL_ROOT_PASSWORD: root</notes-code></pre>
-      </notes-outline>
+      MYSQL_ROOT_PASSWORD: root
+</notes-code></pre>
     </section>
   </notes-paper>
 </template>

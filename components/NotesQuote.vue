@@ -1,5 +1,5 @@
 <template>
-  <blockquote :cite="href">
+  <blockquote :cite="href" class="notes-quote">
     <slot/>
     <footer v-if="source || cite">
       <span v-if="source" v-text="source"/>
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+  import NotesOutline from './NotesOutline'
   import NotesCitation from './NotesCitation'
 
   export default {
@@ -19,20 +20,22 @@
       source: String,
     },
     components: {
+      NotesOutline,
       NotesCitation
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  @import "assets/highlight";
+  .notes-quote {
+    $highlightColor: rgba(255, 255, 0, 0.25);
+    $blur: 4px;
+    background-color: $highlightColor;
+    box-shadow: 0 0 $blur 0 $highlightColor, 0 0 $blur 0 $highlightColor;
+    border-radius: 16px;
+    max-width: fit-content;
 
-  blockquote {
-    @include highlight(rgba(100, 200, 100, 0.1), 0.5rem);
-    width: fit-content;
-    border-radius: 5px;
-
-    p {
+    > :not(:last-child) {
       &::before {
         content: '\201C';
       }
@@ -41,18 +44,18 @@
         content: '\201D';
       }
     }
+  }
 
-    footer {
-      text-align: right;
+  footer {
+    text-align: right;
 
-      &::before {
-        content: '\2013';
-        margin-right: 0.5rem;
-      }
+    &::before {
+      content: '\2013';
+      margin-right: 0.5rem;
+    }
 
-      *:not(:last-child)::after {
-        content: ','
-      }
+    *:not(:last-child)::after {
+      content: ','
     }
   }
 </style>

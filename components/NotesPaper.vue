@@ -1,81 +1,121 @@
 <template>
-  <div class="ruled-paper">
-    <span class="rule"/>
-    <div class="header">
+  <div class="notes-paper">
+    <span class="notes-paper-rule"/>
+    <div class="notes-paper-header">
       <slot name="header"/>
     </div>
-    <div class="content">
+    <div class="notes-paper-content">
       <slot/>
     </div>
   </div>
 </template>
 
 <script>
+  function normalizeImgHeights (lineHeight, $parent = document.body) {
+    $parent.querySelectorAll('img').forEach((img) => {
+      const imgHeight = parseInt(window.getComputedStyle(img).height, 10)
+      const remainder = lineHeight - (imgHeight % lineHeight)
+      img.style.paddingBottom = `${remainder}px`
+    })
+  }
+
   export default {
     name: 'notes-paper',
+    mounted () {
+      const lineHeight = parseInt(window.getComputedStyle(document.body).lineHeight, 10)
+      normalizeImgHeights(lineHeight, this.$el)
+      window.addEventListener('resize', () => normalizeImgHeights(lineHeight, this.$el))
+    }
   }
 </script>
 
 <style lang="scss">
-  @import "../assets/highlight";
+  $ruleColor: #efe4e4;
+  $lineColor: #d9eaf3;
+  $textColor: #212e64;
 
-  $rule-color: #efe4e4;
-  $line-color: #d9eaf3;
-  $text-color: #212e64;
+  $ruleWidth: 5%;
 
-  $rule-size: 7.5%;
-  $rule-border: 5px;
-  $rule-margin: 1.5%;
-  $rule-width: calc(#{$rule-size} - #{$rule-border} - #{$rule-margin});
-
-  .ruled-paper {
-    position: relative;
-    font-family: monospace;
+  .notes-paper {
     display: flex;
     flex-direction: column;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    color: $textColor;
+    background-color: white;
+    font-family: "Comic Sans MS", monospace;
+    border-radius: 16px;
 
-    * {
-      margin: 0;
-      padding: 0;
-      color: $text-color;
-      border-color: $text-color;
-    }
-
-    em {
-      @include highlight($code-highlight-a-color);
-    }
-
-    .rule {
-      position: absolute;
-      height: 100%;
-      width: $rule-width;
-      border-right: $rule-border double $rule-color;
-    }
-
-    .header {
+    .notes-paper-rule {
       z-index: 1;
-      text-align: center;
-      line-height: 2rem;
-      min-height: 4rem;
-      padding-top: 1rem;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      border-right: 5px double $ruleColor;
+      width: $ruleWidth;
+      height: 100%;
     }
 
-    .content {
-      flex: 1;
-      padding: 0 $rule-margin 0 $rule-size;
-      background-image: repeating-linear-gradient(transparent 0px, transparent calc(1rem - 1px), $line-color 1rem);
+    .notes-paper-header {
+      display: flex;
+      flex-direction: column;
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+      min-height: 4rem;
+      text-align: center;
+      justify-content: center;
+    }
 
-      section, section > div {
-        > * {
+    .notes-paper-content {
+      flex: 1;
+      border-bottom-left-radius: inherit;
+      border-bottom-right-radius: inherit;
+      background-image: repeating-linear-gradient(transparent 0px, transparent calc(1rem - 1px), $lineColor 1rem);
+    }
+
+    .notes-paper-header, .notes-paper-content {
+      padding: 0 1rem 0 calc(#{$ruleWidth} + 1rem);
+
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      em {
+        $highlightColor: rgba(255, 150, 150, 0.25);
+        $blur: 4px;
+        background-color: $highlightColor;
+        border-radius: 4px;
+        box-shadow: 0 0 $blur 0 $highlightColor, 0 0 $blur 0 $highlightColor;
+        font-style: inherit;
+      }
+
+      code {
+        vertical-align: bottom;
+        text-transform: none;
+      }
+
+      section {
+        margin-bottom: 1rem;
+
+        > *:not(:last-child) {
           margin-bottom: 1rem;
+        }
+
+        > {
+          h1, h2, h3, h4, h5 {
+            text-transform: capitalize;
+          }
         }
       }
 
-      h1, h2, h3 {
-        text-transform: capitalize;
-        margin-bottom: 1rem;
-        position: relative;
-        z-index: 1;
+      hr {
+        margin: calc(0.5rem - 1px) 0.5rem;
+        height: 0;
+        border: 1px solid black;
+        border-radius: 1px;
       }
 
       sup, sub, small {
@@ -84,12 +124,6 @@
 
       ul, ol {
         list-style-position: inside;
-      }
-
-      hr {
-        height: 1rem;
-        border: 0;
-        background-image: linear-gradient(transparent 0px, transparent 0.4rem, black, transparent 0.5rem, transparent 1rem);
       }
     }
   }

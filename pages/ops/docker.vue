@@ -9,7 +9,10 @@
         <template v-slot:label>
           <em>ps</em> vs <em>ls</em>
         </template>
-        <p><em>ps</em> stands for <i>process status</i> and <em>ls</em> is just the commonplace, Unix <i>list</i>. This is why it suddenly makes sense for <notes-code syntax="bash">docker network ls</notes-code>, but not <i>ps</i> - the networks aren't processes that need statuses; they're just labels.</p>
+        <p><em>ps</em> stands for <i>process status</i> and <em>ls</em> is just the commonplace, Unix <i>list</i>. This is why it suddenly makes sense for
+          <notes-code syntax="bash">docker network ls</notes-code>
+          , but not <i>ps</i> - the networks aren't processes that need statuses; they're just labels.
+        </p>
       </notes-outline>
       <notes-outline label="listening for HTTP requests in a docker container">
         <p>If listening for requests using PHP or node, be sure to specify the host as <em>0.0.0.0</em> rather than <em>localhost</em>. Running a PHP or node server listening on <em>localhost:8080</em>, for example, will only accept requests originating from within the Docker container itself. <em>0.0.0.0:8080</em> would accept a request from anywhere on port <em>8080</em></p>
@@ -24,7 +27,10 @@
         <p>Prefer <em>COPY</em>. <em>COPY</em> simply copies a file from the build context/image to the container. Docker's <em>ADD</em> command is a more robust version of <em>COPY</em> in that it supports fetching from URLs and will automatically untar compressed archives.</p>
       </notes-outline>
       <notes-outline label="mounting directories in the Windows Linux Subsystem">
-        <p>WLS mounts the Windows host to <em>/mnt</em>, eg: <em>C:\</em> is the equivalent of <em>/mnt/c/</em>. However, Docker Desktop (for Windows) expects mounts to originate with <em>/c</em>. The best solution is to leverage WLS' mount capabilities to just bind <em>/mnt/c</em> to <em>/c</em> with <notes-code syntax="bash">sudo mkdir /c && mount --bind /mnt/c /c</notes-code>. Alternatively, you can manually, explicitly bind mount paths so that the host path begins at <em>/c</em> rather than using shortcuts like <em>pwd</em> which may originate with <em>/mnt</em>. This is caused by the fact Docker doesn't have access to the WLS filesystem, so any work you do should be in the Windows host file system available through <em>/mnt/c</em> and its sub-directories.</p>
+        <p>WLS mounts the Windows host to <em>/mnt</em>, eg: <em>C:\</em> is the equivalent of <em>/mnt/c/</em>. However, Docker Desktop (for Windows) expects mounts to originate with <em>/c</em>. The best solution is to leverage WLS' mount capabilities to just bind <em>/mnt/c</em> to <em>/c</em> with
+          <notes-code syntax="bash">sudo mkdir /c && mount --bind /mnt/c /c</notes-code>
+          . Alternatively, you can manually, explicitly bind mount paths so that the host path begins at <em>/c</em> rather than using shortcuts like <em>pwd</em> which may originate with <em>/mnt</em>. This is caused by the fact Docker doesn't have access to the WLS filesystem, so any work you do should be in the Windows host file system available through <em>/mnt/c</em> and its sub-directories.
+        </p>
       </notes-outline>
     </section>
     <section>

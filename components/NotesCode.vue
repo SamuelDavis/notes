@@ -1,5 +1,5 @@
 <template>
-  <code :class="syntax">
+  <code :class="syntax" class="notes-code">
     <slot/>
   </code>
 </template>
@@ -16,30 +16,27 @@
     created () {
       import(`highlight.js/lib/languages/${this.syntax}`)
         .then((res) => hljs.registerLanguage(this.syntax, res.default))
-        .then(() => {
-          this.$nextTick(() => document.querySelectorAll('code').forEach((el) => {
-            hljs.highlightBlock(el)
-          }))
-        })
+        .then(() => this.$nextTick(() => hljs.highlightBlock(this.$el)))
     }
   }
 </script>
 
 <style lang="scss">
-  .hljs {
-    padding: 0 3px !important;
-    border-radius: 3px;
-    width: fit-content;
-    overflow-y: hidden;
+  .notes-code {
+    overflow: scroll;
+    border-radius: 4px;
+    text-indent: -1rem;
+    padding: 0 0.5rem 0 1.5rem !important;
   }
 
-  pre .hljs {
-    width: inherit;
-  }
-
-  p, h1, h2, h3, h4, h5, li {
-    .hljs {
-      display: inline;
+  p, .label, h1, h2, h3, h4, h5 {
+    .notes-code {
+      display: inline-block;
     }
+  }
+
+  pre .notes-code {
+    text-indent: inherit;
+    padding: 0 1rem 1rem !important;
   }
 </style>

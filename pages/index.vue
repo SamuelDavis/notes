@@ -1,5 +1,5 @@
 <template>
-  <div class="inverted-text" id="cover">
+  <div id="cover">
     <div class="content">
       <h1>Notes</h1>
       <hr>
@@ -32,32 +32,20 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   #cover {
-    background-color: #50514F !important;
-    font-size: 2rem;
-    line-height: 2rem;
-    text-align: center;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-
-    > .content {
-      display: inline-block;
-      text-align: left;
-      border: 1px solid white;
+    .content {
+      font-family: "Times New Roman", monospace;
+      color: white;
+      text-shadow: 0 0 3px black;
+      margin: 15% 25% 30%;
       padding: 1rem;
-      margin: 1rem;
+      border: 1px inset white;
+      font-size: 2rem;
+      line-height: 2rem;
 
       * {
         display: block;
-      }
-
-      h4 {
-        margin-bottom: 0;
-      }
-
-      p {
-        margin-top: 0;
       }
     }
   }

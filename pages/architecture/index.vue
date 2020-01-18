@@ -28,7 +28,7 @@
       <notes-quote cite="Build your own SaaS" href="https://overcast.fm/+MBmWqe1VQ" source="Taylor Otwell">
         <p>Code you don't invoke won't impact performance.</p>
       </notes-quote>
-      <i>...but it can certainly muddy the waters.</i>
+      <i>&hellip;but it can certainly muddy the waters.</i>
     </section>
     <section>
       <h1>Don't use patterns, discover them</h1>
@@ -39,13 +39,15 @@
       <p>If you have a <i>cross-cutting concern</i>, eg: if you need to rely on some domain outside the one you're working on, then why not use an interface? If you code to an interface, you can then use dependency-injection to fulfill that interfaces' requirements from your framework.</p>
     </section>
     <section>
-      <h1>Instead of <notes-code syntax="bash">composer create-project laravel/laravel my-app</notes-code>...</h1>
+      <h1>Instead of
+        <notes-code syntax="bash">composer create-project laravel/laravel my-app</notes-code>&hellip;
+      </h1>
       <ol>
         <li>Create a brand new, empty composer project.</li>
-        <li>Create a <code>src/</code> directory at the top-level which is auto-loaded with <code>psr-4</code> into some meaningful namespace.</li>
-        <li>Create an <code>index.php</code> file in the project root where I write all the functionality of my app with as few dependencies as possible.</li>
-        <li>As chunks of code begin to have meaning, wrap them up into classes and move those classes into the <code>src/</code> directory, replacing the code in <code>index.php</code> with those classes and methods.</li>
-        <li>Create a README which either references that <code>index.php</code> file, or copy-pastes meaningful chunks from it to demonstrate how the application operates.</li>
+        <li>Create a <em>src/</em> directory at the top-level which is auto-loaded with <em>psr-4</em> into some meaningful namespace.</li>
+        <li>Create an <em>index.php</em> file in the project root where I write all the functionality of my app with as few dependencies as possible.</li>
+        <li>As chunks of code begin to have meaning, wrap them up into classes and move those classes into the <em>src/</em> directory, replacing the code in <em>index.php</em> with those classes and methods.</li>
+        <li>Create a README which either references that <em>index.php</em> file, or copy-pastes meaningful chunks from it to demonstrate how the application operates.</li>
       </ol>
       <p>Finally, create a new laravel app and require my app as a dependency of that laravel app. I then wire up whatever models, views, controllers, commands, jobs, etc. which alias to my app as much as possible. Using the above method, each domain can be its own little app and, if you want a monolith then you can compose them all into a single Laravel instance. Or, if you'd prefer a microservices approach, you could wrap each of them up into its own laravel app and deploy them separately.</p>
     </section>
@@ -80,17 +82,3 @@
     }
   }
 </script>
-
-<style lang="scss" scoped>
-  @import "../../assets/highlight";
-
-  .content {
-    code:not(.hljs) {
-      @include highlight($code-highlight-a-color);
-    }
-
-    iframe {
-      max-width: 100%;
-    }
-  }
-</style>

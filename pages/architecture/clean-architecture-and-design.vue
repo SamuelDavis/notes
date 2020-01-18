@@ -47,16 +47,17 @@
         <notes-citation href="https://www.amazon.com/Object-Oriented-Software-Engineering-Approach/dp/0201544350">Object-Oriented Software Engineering</notes-citation>
       </h1>
       <div>
-        <h2>use cases</h2>
-        <notes-quote source="Robert C. Martin">
-          <p>A use case is a description of an action a user will perform on the system.</p>
-        </notes-quote>
-        <ul>
-          <li><em>Data</em> describes any data being manipulated by the use case.</li>
-          <li><em>Primary course</em> describes the step-by-step process taken to instantiate, process, and resolve the use case.</li>
-          <li><em>Exception course</em> describes how to recover from expected fail states from the use case.</li>
-        </ul>
-        <p>Use cases should be implementation-agnostic. <i>Perhaps</i> the <em>data</em> is collected in a web-form and the <em>primary course</em> resolves to a database-generated id, but those details will not be included in the use case documentation. These are <i>details</i> and subject to regular, potentially radical change.</p>
+        <notes-outline label="Use Cases">
+          <notes-quote source="Robert C. Martin">
+            <p>A use case is a description of an action a user will perform on the system.</p>
+          </notes-quote>
+          <ul>
+            <li><em>Data</em> describes any data being manipulated by the use case.</li>
+            <li><em>Primary course</em> describes the step-by-step process taken to instantiate, process, and resolve the use case.</li>
+            <li><em>Exception course</em> describes how to recover from expected fail states from the use case.</li>
+          </ul>
+          <p>Use cases should be implementation-agnostic. <i>Perhaps</i> the <em>data</em> is collected in a web-form and the <em>primary course</em> resolves to a database-generated id, but those details will not be included in the use case documentation. These are <i>details</i> and subject to regular, potentially radical change.</p>
+        </notes-outline>
       </div>
     </section>
   </notes-paper>
@@ -66,29 +67,14 @@
   import NotesPaper from '../../components/NotesPaper'
   import NotesCitation from '../../components/NotesCitation'
   import NotesQuote from '../../components/NotesQuote'
+  import NotesOutline from '../../components/NotesOutline'
 
   export default {
     components: {
       NotesPaper,
       NotesCitation,
-      NotesQuote
+      NotesQuote,
+      NotesOutline
     }
   }
 </script>
-
-<style lang="scss" scoped>
-  .content {
-    img {
-      height: 36rem;
-      object-fit: contain;
-
-      @media (max-width: 800px) {
-        height: 18rem;
-      }
-
-      @media (max-width: 400px) {
-        height: 9rem;
-      }
-    }
-  }
-</style>
