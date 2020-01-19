@@ -2,8 +2,7 @@
   <notes-paper>
     <template v-slot:header>
       <h1>Domain Driven Design</h1>
-      <h5>or</h5>
-      <h2>[Framework] is not your Application</h2>
+      <h3>[Framework] is not your Application</h3>
     </template>
 
     <section>

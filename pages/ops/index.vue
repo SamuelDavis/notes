@@ -7,8 +7,11 @@
       </ul>
     </section>
     <section>
-      <notes-outline label="Local Development">
-        <h3><em>.test</em> or <em>.local</em>, not <em>.dev</em></h3>
+      <h1>Local Development</h1>
+      <notes-outline>
+        <template v-slot:label>
+          <em>.test</em> or <em>.local</em>, not <em>.dev</em>
+        </template>
         <p><a href="https://icannwiki.org/.dev"><em>.dev</em></a> is a registered icann tld, <a href="https://en.wikipedia.org/wiki/.test"><em>.test</em></a> is reserved for development. <a href="https://en.wikipedia.org/wiki/.local"><em>.local</em> is also technically appropriate.</a></p>
       </notes-outline>
       <notes-outline>
