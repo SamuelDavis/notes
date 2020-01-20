@@ -4,10 +4,17 @@
       <h1>Vocabulary</h1>
       <ul>
         <li><em>tld</em> means <em>top-level domain</em> and is the highest level of the DNS hierarchy.</li>
+        <li><em>fqdn</em> means <em>fully qualified domain name</em> and is the combination of the <em>domain</em>, <em>host</em>, and <em>tld</em>, eg <em>www</em>.<em>google</em>.<em>com</em></li>
       </ul>
     </section>
     <section>
       <h1>Local Development</h1>
+      <notes-outline label="list DNS resolvers">
+        <notes-code syntax="bash">scutil --dns</notes-code>
+      </notes-outline>
+      <notes-outline label="refresh Mac DNS cache">
+        <notes-code syntax="bash">dscacheutil -flushcache</notes-code>
+      </notes-outline>
       <notes-outline>
         <template v-slot:label>
           <em>.test</em> or <em>.local</em>, not <em>.dev</em>
@@ -21,7 +28,7 @@
         <pre><notes-code syntax="bash">
 brew install dnsmasq; #install dnsmasq
 mkdir -pv $(brew --prefix)/etc/; #create config directory
-echo 'address=/.test/127.0.0.1' >> $(brew --prefix)/etc/dnsmasq.conf; #route *.test to localhost
+echo 'address=/test/127.0.0.1' >> $(brew --prefix)/etc/dnsmasq.conf; #route *.test to localhost
 sudo brew services start dnsmasq; #autostart dnsmasq
 sudo mkdir -v /etc/resolver; #create resolver dir
 sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/test'; #add nameserver to resolvers
