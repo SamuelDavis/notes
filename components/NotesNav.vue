@@ -78,6 +78,8 @@
       writing-mode: vertical-lr;
       margin-top: 0;
       margin-left: 0;
+      margin-bottom: 1rem;
+      min-height: max-content;
 
       li {
         display: inline-block;
