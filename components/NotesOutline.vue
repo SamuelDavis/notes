@@ -28,6 +28,7 @@
 
 <style lang="scss" scoped>
   .notes-outline {
+    width: fit-content;
     box-shadow: inset 0 0 1px 0 black, 0 0 1px 0 black;
     border-radius: 4px;
     padding: 1rem 0.5rem;
@@ -37,6 +38,7 @@
       padding-top: 0;
 
       > :first-child {
+        white-space: nowrap;
         margin: 0;
         max-width: fit-content;
         $backgroundColor: rgb(255, 255, 255);
