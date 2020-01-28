@@ -1,5 +1,5 @@
 <template>
-  <div class="notes-paper">
+  <article class="notes-paper">
     <span class="notes-paper-rule"/>
     <div class="notes-paper-header">
       <slot name="header"/>
@@ -7,7 +7,7 @@
     <div class="notes-paper-content">
       <slot/>
     </div>
-  </div>
+  </article>
 </template>
 
 <script>
