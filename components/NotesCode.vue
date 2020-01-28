@@ -6,7 +6,7 @@
 
 <script>
   import hljs from 'highlight.js/lib/highlight'
-  import 'highlight.js/styles/atom-one-dark-reasonable.css'
+  import 'highlight.js/styles/github-gist.css'
 
   export default {
     name: 'notes-code',
@@ -23,6 +23,7 @@
 
 <style lang="scss">
   .notes-code {
+    background-color: transparent;
     overflow: scroll;
     border-radius: 4px;
     text-indent: -1rem;
