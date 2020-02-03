@@ -23,7 +23,7 @@
 
 <style lang="scss">
   .notes-code {
-    background-color: transparent;
+    background-color: transparent !important;
     overflow: scroll;
     border-radius: 4px;
     text-indent: -1rem;
