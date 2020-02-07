@@ -35,7 +35,7 @@
     border-radius: 16px;
     max-width: fit-content;
 
-    > :not(:last-child) {
+    > :not(footer) {
       &::before {
         content: '\201C';
       }

@@ -113,9 +113,9 @@ print(c.some_other_method())
 </template>
 
 <script>
-  import NotesPaper from '../../components/NotesPaper'
-  import NotesOutline from '../../components/NotesOutline'
-  import NotesCode from '../../components/NotesCode'
+  import NotesPaper from '../../../components/NotesPaper'
+  import NotesOutline from '../../../components/NotesOutline'
+  import NotesCode from '../../../components/NotesCode'
 
   export default {
     components: {
