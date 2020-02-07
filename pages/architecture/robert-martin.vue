@@ -5,7 +5,7 @@
     </template>
     <article>
       <h1>
-        <notes-citation href="https://www.youtube.com/embed/Nsjsiz2A9mg">Clean Architecture and Design</notes-citation>
+        <notes-citation href="https://www.youtube.com/watch?v=Nsjsiz2A9mg">Clean Architecture and Design</notes-citation>
       </h1>
       <section>
         <h1>Model-View-Presenter</h1>
@@ -27,7 +27,7 @@
       </section>
       <section>
         <h1>Quotes</h1>
-        <notes-quote cite="NDC 2013" href="https://www.youtube.com/embed/Nsjsiz2A9mg" source="Robert C. Martin">
+        <notes-quote cite="NDC 2013" href="https://www.youtube.com/watch?v=Nsjsiz2A9mg" source="Robert C. Martin">
           <p>Architecture is about <i>intent</i>.</p>
           <p>The web is a delivery mechanism!</p>
           <p>The web should be a plugin to your application.</p>

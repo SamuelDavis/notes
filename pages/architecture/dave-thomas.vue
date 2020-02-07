@@ -5,7 +5,7 @@
     </template>
     <article>
       <h1>
-        <notes-citation href="https://www.youtube.com/embed/6U7cLUygMeI">Dave Thomas' Keynote: EMPEX NYC</notes-citation>
+        <notes-citation href="https://www.youtube.com/watch?v=6U7cLUygMeI">Dave Thomas' Keynote: EMPEX NYC</notes-citation>
       </h1>
       <section>
         <h1>Vocabulary</h1>
@@ -17,7 +17,7 @@
       </section>
       <section>
         <h1>Quotes</h1>
-        <notes-quote cite="EMPEX NYC" href="https://www.youtube.com/embed/6U7cLUygMeI" source="Dave Thomas">
+        <notes-quote cite="EMPEX NYC" href="https://www.youtube.com/watch?v=6U7cLUygMeI" source="Dave Thomas">
           <p>The more things that are coupled the more they resist change.</p>
           <p>The more things are interdependent, the harder it is to change one of them; because dependencies ripple through the entire application.</p>
           <p>Well designed code is easier to change than badly designed code.</p>

@@ -5,7 +5,7 @@
     </template>
     <article>
       <h1>
-        <notes-citation href="https://www.youtube.com/embed/8bZh5LMaSmE">All the Little Things</notes-citation>
+        <notes-citation href="https://www.youtube.com/watch?v=8bZh5LMaSmE">All the Little Things</notes-citation>
       </h1>
       <section>
         <h3>General Wisdom</h3>
@@ -36,7 +36,7 @@
     </article>
     <article>
       <h1>
-        <notes-citation href="https://www.youtube.com/embed/v-2yFMzxqwU">SOLID Object-Oriented Design</notes-citation>
+        <notes-citation href="https://www.youtube.com/watch?v=v-2yFMzxqwU">SOLID Object-Oriented Design</notes-citation>
       </h1>
       <section>
         <h3>Vocabulary</h3>
