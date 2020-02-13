@@ -21,7 +21,7 @@
   export default {
     data () {
       return {
-        phone: '802-745-0057',
+        phone: '802-734-0057',
         email: 'samueljakdavis@gmail.com',
         website: 'https://sdavis.online',
         address: [
