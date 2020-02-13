@@ -14,9 +14,12 @@
       syntax: { type: String }
     },
     created () {
-      import(`highlight.js/lib/languages/${this.syntax}`)
-        .then((res) => hljs.registerLanguage(this.syntax, res.default))
-        .then(() => this.$nextTick(() => hljs.highlightBlock(this.$el)))
+      this.syntax.split(' ').map(syntax => {
+        console.log(`highlight.js/lib/languages/${syntax}`)
+        import(`highlight.js/lib/languages/${syntax}`)
+          .then((res) => hljs.registerLanguage(syntax, res.default))
+          .then(() => this.$nextTick(() => hljs.highlightBlock(this.$el)))
+      })
     }
   }
 </script>

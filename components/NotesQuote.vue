@@ -2,7 +2,8 @@
   <blockquote :cite="href" class="notes-quote">
     <slot/>
     <footer v-if="source || cite">
-      <span v-if="source" v-text="source"/>
+      <notes-citation :href="href" v-if="source && !cite">{{source}}</notes-citation>
+      <span v-else-if="source" v-text="source"/>
       <notes-citation :href="href" v-if="cite">{{cite}}</notes-citation>
     </footer>
   </blockquote>
