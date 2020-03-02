@@ -53,6 +53,10 @@
           <li>Because this command is actually introspecting the host (everything docker uses, rather than a single container), the <em>--net</em>, <em>--ipc</em>, and <em>--pid</em> all get set to <em>host</em>.</li>
           <li><em>--privileged</em> gives access to all docker devices on the host.</li>
         </ul>
+        <notes-code syntax="bash">docker system df</notes-code>
+        <ul>
+          <li><em>df</em> is a command which describes exactly how much disk space is being used by docker images, containers, volumes, and caches.</li>
+        </ul>
       </notes-outline>
       <notes-outline label="remove all stopped docker containers">
         <notes-code syntax="bash">docker rm $(docker ps -qa)</notes-code>
@@ -110,6 +114,21 @@
           <li><em>container</em> may refer to either the container id or name (partial matches on id are accepted).</li>
         </ul>
       </notes-outline>
+      <notes-outline>
+        <template v-slot:label>
+          <notes-code syntax="bash">docker container port id</notes-code>
+        </template>
+        <ul>
+          <li><em>container</em> is the <em>management command</em> (or sub-section) from which the <em>port</em> command can be accessed.</li>
+          <li><em>port</em> is a command which prints the exposed port(s) for the specified container.</li>
+          <li><em>id</em> specifies the container you're trying to introspect; it can be the container name or id (partial matches accepted).</li>
+        </ul>
+        <small>example output:</small>
+        <pre><notes-code syntax="bash">
+80/tcp -> 0.0.0.0:8081
+80/tcp -> 0.0.0.0:8080
+</notes-code></pre>
+      </notes-outline>
     </section>
     <section>
       <h1>cleanup</h1>
@@ -130,6 +149,17 @@
         <ul>
           <li><em>rmi</em> deletes locally available images.</li>
           <li><em>tag</em> is optional and defaults to <em>latest</em>.</li>
+        </ul>
+      </notes-outline>
+      <notes-outline>
+        <template v-slot:label>
+          <notes-code syntax="bash">docker system prune -a --volumes</notes-code>
+        </template>
+        <ul>
+          <li><em>system</em> is the management command specifying this is a system-wide command.</li>
+          <li><em>prune</em> is a command which will remove docker networks, images, containers, etc.</li>
+          <li><em>-a</em> is optional and specifies that all unused images should be removed.</li>
+          <li><em>--volumes</em> is optional and specifies that all unused volumes should be removed.</li>
         </ul>
       </notes-outline>
     </section>
