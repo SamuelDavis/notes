@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[194],{383:function(e,n,t){"use strict";t.r(n);var o={middleware:function(e){return(0,e.redirect)("/databases/mysql-query-optimization")}},r=t(11),component=Object(r.a)(o,void 0,void 0,!1,null,null,null);n.default=component.exports}}]);

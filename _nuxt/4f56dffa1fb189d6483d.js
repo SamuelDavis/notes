@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[204],{385:function(n,e,t){"use strict";t.r(e);var o={middleware:function(n){return(0,n.redirect)("/tools/data-transfer")}},r=t(11),component=Object(r.a)(o,void 0,void 0,!1,null,null,null);e.default=component.exports}}]);
