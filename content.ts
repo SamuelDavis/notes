@@ -18,7 +18,6 @@ type Pattern = {
   intent: string;
   problem: string;
   structure: string;
-  checkList: string[];
 };
 
 const content: {
@@ -233,11 +232,6 @@ const content: {
         problem: "platform dependency encapsulation",
         structure:
           "abstract factory delegates to one of any number of factories to instantiate classes implementing the requested interface",
-        checkList: [
-          "define an abstract factory with methods for every product",
-          "define a factory implementation for every  platform",
-          "deprecate all instances of new in favor of the abstract factory",
-        ],
       },
       builder: {
         name: "Builder",
@@ -246,12 +240,6 @@ const content: {
           "some objects may be very complex, requiring dynamic construction, or many objects may be constructed from a base configuration",
         structure:
           "the reader parses common input, the builder polymorphically creates many peculiar targets",
-        checkList: [
-          "is there potential for many outputs",
-          "define api for capturing configuration",
-          "define builder for deriving target from configuration",
-          "client asks reader to construct and builder to return",
-        ],
       },
       "factory-method": {
         name: "Factory Method",
@@ -260,11 +248,6 @@ const content: {
           "allow applications to define the construction of their own domain objects",
         structure:
           "any constructor method, eg: named constructors, service container",
-        checkList: [
-          "if relying on polymorphism, consider a static factory method on the base class",
-          "consider an object pool/caching",
-          "consider actual constructors to be private/protected",
-        ],
       },
       "object-pool": {
         name: "Object Pool",
@@ -274,11 +257,6 @@ const content: {
           "object instantiation can be expensive, object pools cache instantiated objects to avoid recreating them",
         structure:
           "client request object from pool which instantiates it if none are available, and caches it for reuse when the client is finished",
-        checkList: [
-          "create object pool with private collection of objects",
-          "create api to acquire and release objects",
-          "use pool as source of objects",
-        ],
       },
       prototype: {
         name: " Prototype",
@@ -287,12 +265,6 @@ const content: {
           "limit configuration management by construct a class once, then create more instances by copying",
         structure:
           "a factory knows how to find a pure, virtual prototype which can then clone itself",
-        checkList: [
-          "add clone method to class",
-          "design registry which contains prototypes",
-          "design factory which can look up registry's prototypes and clone the appropriate class",
-          "rely on factory instead of new",
-        ],
       },
       singleton: {
         name: "Singleton",
@@ -301,11 +273,6 @@ const content: {
           "the application needs to guarantee only one instance of a class exists",
         structure:
           "the singleton class provides a single accessor function which instantiates and caches the instance on first invocation",
-        checkList: [
-          "define private, static attribute on class to cache instance",
-          "define public, static accessor to return private, static attribute instance",
-          "define lazy instantiation so that first invocation of accessor also instantiates class",
-        ],
       },
     },
     structural: {},
