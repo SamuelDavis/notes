@@ -229,7 +229,7 @@ const content: {
     creational: {
       "abstract-factory": {
         name: "Abstract Factory",
-        intent: "interface for creating related/dependent objects",
+        intent: "factory that delegates to platform-specific factory",
         problem: "platform dependency encapsulation",
         structure:
           "abstract factory delegates to one of any number of factories to instantiate classes implementing the requested interface",
@@ -241,7 +241,7 @@ const content: {
       },
       builder: {
         name: "Builder",
-        intent: "separate the construction objects into multiple steps",
+        intent: "separate the construction object into multiple steps",
         problem:
           "some objects may be very complex, requiring dynamic construction, or many objects may be constructed from a base configuration",
         structure:
@@ -269,7 +269,7 @@ const content: {
       "object-pool": {
         name: "Object Pool",
         intent:
-          "reduce cost of instantiation by caching and re-using created objects",
+          "avoid expensive instantiation by caching and re-using created objects",
         problem:
           "object instantiation can be expensive, object pools cache instantiated objects to avoid recreating them",
         structure:
