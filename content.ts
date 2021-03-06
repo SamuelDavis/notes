@@ -275,7 +275,69 @@ const content: {
           "the singleton class provides a single accessor function which instantiates and caches the instance on first invocation",
       },
     },
-    structural: {},
+    structural: {
+      adapter: {
+        name: "Adapter",
+        intent: "wrap existing interface to a new interface",
+        problem: "existing implementations might have awkward interfaces",
+        structure:
+          "the adapter exposes an api which simply invokes the wrapped class in a friendlier way",
+      },
+      bridge: {
+        name: "Bridge",
+        intent: "decouple abstraction from its implementation",
+        problem:
+          "support extending/composing the interface and the class independently",
+        structure:
+          "a class which implements all the necessary interfaces and delegates to the necessary implementations which don't adhere to those interfaces",
+      },
+      composite: {
+        name: "Composite",
+        intent: "treat individual objects or collections of objects uniformly",
+        problem: "recursive, hierarchical structures may or may not terminate",
+        structure:
+          "the composite shares the APIs of both the object and collection",
+      },
+      decorator: {
+        name: "Decorator",
+        intent: "dynamically attach responsibilities to object",
+        problem: "adding behavior/state to objects at runtime",
+        structure:
+          "when calling an interface method, actually call the wrapper's method, which calls the wrapped object's method and provides a side effect",
+      },
+      facade: {
+        name: "Facade",
+        intent: "unify multiple interfaces into a single interface",
+        problem:
+          "a complex collection of subsystems needs a simplified interface",
+        structure:
+          "a facade may call out to many subsystems with a single method",
+      },
+      flyweight: {
+        name: "Flyweight",
+        intent: "centralize/share uniform data across multiple objects",
+        problem:
+          "when dealing with many similar objects, you may have redundantly allocated data in memory",
+        structure:
+          "one object containing common state is stored in a factory's repository and shared among many objects which in themselves contain only unique state",
+      },
+      "private-class-data": {
+        name: "Private Class Data",
+        intent: "control write access to data",
+        problem:
+          "data may need to have strict controls over when and how it can be manipulated",
+        structure:
+          "instead of defining data directly on the target object, the target object is passed a stateful object in is constructor which can provide access controls on the state",
+      },
+      proxy: {
+        name: "Proxy",
+        intent: "provide a surrogate/placeholder object in place of another",
+        problem:
+          "provide support for an object before lazily instantiating it, delegate to an object stored elsewhere, mutate access/execution of state/behavior",
+        structure:
+          "instead of operating on the target class, the client operates on the proxy which fulfills the same interface, allowing the proxy to implement side effects",
+      },
+    },
     behavioral: {},
   },
 };
