@@ -39,3 +39,7 @@
 - [Relational Databases](https://www.youtube.com/playlist?list=PL6D2AA443FA10BBBC)
 - [Server-Side Web Programming](https://www.youtube.com/playlist?list=PL978B2CE2D788F745)
 - [OOP](https://www.youtube.com/watch?v=lbXsrHGhBAU) / [OOP is Bad](https://www.youtube.com/watch?v=QM1iUe6IofM)
+
+# Infrastructure & Tooling
+- [intro to docker](https://www.youtube.com/watch?v=3c-iBn73dDE)
+- [intro to kubernetes](https://www.youtube.com/watch?v=X48VuDVv0do)
