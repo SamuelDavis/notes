@@ -338,7 +338,103 @@ const content: {
           "instead of operating on the target class, the client operates on the proxy which fulfills the same interface, allowing the proxy to implement side effects",
       },
     },
-    behavioral: {},
+    behavioral: {
+      "chain-of-responsibility": {
+        name: "Chain of Responsibility",
+        intent:
+          "decouple a request and its receiver by passing it through multiple handlers",
+        problem:
+          "potentially many processes may need to run on a request before it is transformed into a response",
+        structure:
+          "each handler in the chain can either return a response, execute a side effect and/or delegate to the next in the chain",
+      },
+      command: {
+        name: "Command",
+        intent: "decouple request invocation and handling",
+        problem:
+          "handling requests without knowing about the operation or the handler",
+        structure:
+          "commands define the data to be manipulated, how to manipulate it, and what dependencies are required to manipulate it",
+      },
+      interpreter: {
+        name: "Interpreter",
+        intent: "parsing a language into a normalized data structure",
+        problem:
+          "allowing the solving of problems using a defined, written schema",
+        structure:
+          "the interpreter recursively parses the language stream identifying compound and terminal expressions, organizing them into a data structure",
+      },
+      iterator: {
+        name: "Iterator",
+        intent: "iterate without exposing the implementation of the collection",
+        problem:
+          "traversing a collection of very different data in potentially configurable ways",
+        structure:
+          "the client interacts with the collection, but the  collection relies on an internal Iterator which handles any complicated logic",
+      },
+      mediator: {
+        name: "Mediator",
+        intent: "loosely couple objects",
+        problem:
+          "resolve complicated dependency hierarchies or many-to-many relationships",
+        structure:
+          "rather than talking to its peers, an object communicates with the mediator which disseminates the request",
+      },
+      memento: {
+        name: "Memento",
+        intent: "encapsulate and preserve state",
+        problem: "restoring state",
+        structure:
+          "the originator is the domain object, the caretaker knows why/when to save/restore the originator, and the memento is the encapsulated state being restored",
+      },
+      "null-object": {
+        name: "Null Object",
+        intent: "satisfy an interface in the absence of a domain object",
+        problem:
+          "a reference may be optionally null, causing null checks to proliferate",
+        structure:
+          "the null object implements the api but produces no side effects and returns null objects",
+      },
+      observer: {
+        name: "Observer",
+        intent:
+          "centralize side-effect generation from state changes in a one-to-many relationship",
+        problem: "many objects may want to share the same side effect",
+        structure:
+          "when a subject changes, it broadcasts to any observers what its change was, and the observers can perform the necessary side effects",
+      },
+      state: {
+        name: "State",
+        intent: "object behavior alters with state changes",
+        problem: "behavior may depend on state",
+        structure:
+          "a wrapper provides a common interface, the wrapper introspects the state and defers to an appropriate subclass which satisfies the wrappers interface with callbacks which can optionally return a new state",
+      },
+      strategy: {
+        name: "Strategy",
+        intent: "make different algorithms interchangeable",
+        problem: "preserve the Open-Closed principle",
+        structure:
+          "conform different behaviors to the same interface which can be specified via configuration",
+      },
+      "template-method": {
+        name: "Template Method",
+        intent:
+          "defer some steps of an algorithm to client-configured callbacks",
+        problem:
+          "an algorithm needs to behave slightly differently depending on configuration",
+        structure:
+          "write out the invariant aspects of the algorithm and then invoke callbacks for the dynamic aspects",
+      },
+      visitor: {
+        name: "Visitor",
+        intent: "define a class' behavior in another class",
+        problem:
+          "having a behavior which affects many classes which shouldn't be defined on a base class",
+        structure:
+          "all subjects define an accept method which takes the visitor as an argument and invokes the appropriate method on the visitor; every visitor defines the appropriate, unique methods to be called by those objects",
+      },
+    },
   },
 };
 
