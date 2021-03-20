@@ -1,10 +1,8 @@
-type Navigation<T> = {
-  [key: string]: Navigation<T> | T;
-};
+type Keyed<T> = { [key: string]: T };
 
-type Lexicon = {
-  [key: string]: string;
-};
+type Recursive<T> = T | { [key: string]: Recursive<T> };
+
+type Lexicon = Keyed<string>;
 
 type AntiPattern = {
   name: string;
@@ -22,8 +20,8 @@ type Pattern = {
 
 const content: {
   lexicon: Lexicon;
-  "anti-patterns": Navigation<AntiPattern>;
-  patterns: Navigation<Pattern>;
+  "anti-patterns": Recursive<AntiPattern>;
+  patterns: Recursive<Pattern>;
 } = {
   lexicon: {
     "anti-pattern": "a coding practice which generates negative consequences",
