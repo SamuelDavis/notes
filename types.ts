@@ -12,3 +12,8 @@ export type Pattern = {
   problem: string;
   structure: string;
 };
+export type ShellCommand = {
+  longhand: string;
+  shorthand?: string;
+  explanation: string;
+};
