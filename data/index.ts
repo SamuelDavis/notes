@@ -1,9 +1,15 @@
-import lexicon from "./lexicon";
-import antiPatterns from "./anti-patterns";
-import patterns from "./patterns";
+import lexicon from "./architecture/lexicon";
+import antiPatterns from "./architecture/anti-patterns";
+import patterns from "./architecture/patterns";
+import docker from "./ops/docker";
 
 export default {
-  lexicon,
-  antiPatterns,
-  patterns,
+  architecture: {
+    lexicon,
+    antiPatterns,
+    patterns,
+  },
+  ops: {
+    docker,
+  },
 };

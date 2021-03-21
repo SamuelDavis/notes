@@ -1,4 +1,4 @@
-import { AntiPattern, Dictionary } from "../types";
+import { AntiPattern, Dictionary } from "../../types";
 
 export const development: Dictionary<AntiPattern> = {
   "the-blob": {

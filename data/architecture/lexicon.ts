@@ -1,4 +1,4 @@
-import { Dictionary } from "../types";
+import { Dictionary } from "../../types";
 
 const lexicon: Dictionary<string> = {
   "anti-pattern": "a coding practice which generates negative consequences",

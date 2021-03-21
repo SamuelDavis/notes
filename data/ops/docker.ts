@@ -1,4 +1,4 @@
-import { Dictionary, ShellCommand } from "../types";
+import { Dictionary, ShellCommand } from "../../types";
 
 const lexicon: Dictionary<string> = {
   container:

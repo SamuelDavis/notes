@@ -1,4 +1,4 @@
-import { Dictionary, Pattern } from "../types";
+import { Dictionary, Pattern } from "../../types";
 
 const creational: Dictionary<Pattern> = {
   "abstract-factory": {
