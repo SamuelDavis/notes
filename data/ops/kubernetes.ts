@@ -114,6 +114,15 @@ const ingressSupportOnMac: string[] = [
   "minikube addons enable ingress",
 ];
 
+const volumesComponents: Dictionary<string> = {
+  "persistent volume":
+    "an un-namespaced, globally-accessible cluster resource which interfaces with an external storage system",
+  "persistent volume claim":
+    "a namespaced cluster resource which identify volume criteria which kubernetes can use to select a persistent volume which will then be mapped to a pod",
+  "storage class":
+    "a resource which dynamically allocates persistent volumes when persistent volume claims are made",
+};
+
 export default {
   lexicon,
   applications,
@@ -123,4 +132,5 @@ export default {
   namespacesSummary,
   basicCommands,
   helmSummary,
+  volumesComponents,
 };
