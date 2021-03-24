@@ -123,6 +123,16 @@ const volumesComponents: Dictionary<string> = {
     "a resource which dynamically allocates persistent volumes when persistent volume claims are made",
 };
 
+const servicesComponents: Dictionary<string> = {
+  ClusterIP:
+    "provides a static ip which can forward requests to one or more nodes (randomly) based on its selectors and their labels",
+  Headless:
+    "makes its IP discoverable via a DNS lookup so that a single, specific pod can be interacted with",
+  NodePort:
+    "exposes a specific port in the node to traffic external to the cluster",
+  LoadBalancer: "exposes itself to traffic external to the cluster",
+};
+
 export default {
   lexicon,
   applications,
@@ -133,4 +143,5 @@ export default {
   basicCommands,
   helmSummary,
   volumesComponents,
+  servicesComponents,
 };
