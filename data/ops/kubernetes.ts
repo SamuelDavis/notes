@@ -53,6 +53,14 @@ const applications: Dictionary<string> = {
   kubectl: "CLI for kubernetes cluster",
   kubens:
     "(brew install kubens) can change the default namespace to make kubectl friendlier",
+  helm: "the default package manager & yaml templating engine for kubernetes",
+};
+
+const helmSummary: Dictionary<string> = {
+  "Helm Charts":
+    "a collection of yaml files describing the necessary cluster configuration to support a 3rd party application",
+  "Chart.yaml":
+    "a yaml template with custom syntax for injecting data from a values.yaml file",
 };
 
 const basicCommands: Dictionary<ShellCommand> = {
@@ -114,4 +122,5 @@ export default {
   architecture,
   namespacesSummary,
   basicCommands,
+  helmSummary,
 };
