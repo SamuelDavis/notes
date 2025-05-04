@@ -27,7 +27,7 @@ The Ego acts as a defense mechanism against the unsurvivable reality; a father i
 
 Gaze refers to how an external entity perceives and interacts with oneself.
 
-Prior to the [[Mirror Stage]] the child's identity is revealed through it's relationship with its mother, inferring things about itself from it's mother's Gaze.
+Prior to [[The Mirror Stage]] the child's identity is revealed through it's relationship with its mother, inferring things about itself from it's mother's Gaze.
 
 Eventually the child sees its reflection in the mirror. The reflection is interpreted as a separate entity which represents itself. This is often reinforced by the mother who speaks objectively about the reflection ("Who is that? That's `name`!").
 
@@ -36,7 +36,7 @@ Thus it creates an Ego, or fanciful facade it can recognize in place of its unre
 The Mother's Gaze plays a critical role in the foundations of the Ego. Failure to found the ego in a consistent, positive Gaze can cripple development.
 ## Autism
 
-If the Subject is not firmly cemented during the Mirror Stage, autistic symptoms can manifest. Communication must be directed from a Subject to a Subject. When a child has no Subject, then they may be able to use words, but not [[Communitcation|communicate]].
+If the Subject is not firmly cemented during [[The Mirror Stage]], autistic symptoms can manifest. Communication must be directed from a Subject to a Subject. When a child has no Subject, then they may be able to use words, but not [[Communitcation|communicate]].
 ## Misc
 
 The Subject consists of the Imaginary, the Symbolic, and the Real

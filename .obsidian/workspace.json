@@ -1,0 +1,198 @@
+{
+  "main": {
+    "id": "8d4402da625101a1",
+    "type": "split",
+    "children": [
+      {
+        "id": "f392179fb4031908",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "73704f6cbae5ee74",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Ego.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Ego"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "8d3ad7640e35fab9",
+    "type": "split",
+    "children": [
+      {
+        "id": "06e5dd32a083d584",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9034f5a3cde27444",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "809189a49cf2d0e4",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "mirror stage",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "6f3c40b39ffd05f2",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 250.5
+  },
+  "right": {
+    "id": "3ec21b959832092b",
+    "type": "split",
+    "children": [
+      {
+        "id": "8fe8ab66b224e16d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bd65377fd48cef9a",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Ego.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Ego"
+            }
+          },
+          {
+            "id": "fcbde75904a2577e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Ego.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Ego"
+            }
+          },
+          {
+            "id": "81e072d0da03ac33",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "f9ea8c64af21e011",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Ego.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Ego"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "73704f6cbae5ee74",
+  "lastOpenFiles": [
+    "Jacques Lacan.md",
+    "Automatism.md",
+    "Ego.md",
+    "Mirror Stage.md",
+    "The Mirror Stage.md",
+    "Lacan's Fantasies.md",
+    "Subject.md",
+    "Empathy.md",
+    "Virtue.md",
+    "Transitivism.md",
+    "Soverignty.md",
+    "Salvador Dali.md",
+    "Responsibility.md",
+    "Lexicon Vitae.md",
+    "Lev Vygotsky.md",
+    "Inadequacy of Language.md",
+    "Halos.md",
+    "Master Signifiers.md",
+    "Untitled.md",
+    "Linguistics.md",
+    "Dream.md",
+    "Freud's theory of Displacement.md",
+    "Lacantian Mathematics.md"
+  ]
+}
