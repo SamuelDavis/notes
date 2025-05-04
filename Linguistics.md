@@ -1,7 +1,7 @@
 #psychology/lacan
 [[Jacques Lacan]] theorized that, because language is the distinctive feature of humans, thought and speech mirror each other. As [[Jordan Peterson]] would say, they're the same thing. The same may be of neuronal biology as well as the unconscious.
 
-The unconscious is that which is depressed by the Subject and thus is not consciously expressible by the Subject. However, it is expression unconscious behavior, such as dreams, slips of the tongue, self-defeating acts, and pathologies.
+The unconscious is that which is depressed by the Subject and thus is not consciously expressible by the Subject. However, it is expression unconscious behavior, such as dreams, slips of the tongue, self-defeating acts, denegation (saying the opposite of what is subconsciously meant), and pathologies.
 
 The way people speak is representative of their unconscious. The underlying patterns of speech are linguistic, this the unconscious is linguistic.
 
